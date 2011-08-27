@@ -10,9 +10,11 @@ Date = 8/25/11
 #define NAME "Sierra Sporting Goods"
 
 void menu(void);
+void myName(void);
 
 int main(void)
 {
+    myName();
     menu();
     return 0;
 
@@ -42,4 +44,8 @@ void menu(void)
            break;
         }
     } while (repeat!='n');
+}
+void myName(void)
+{
+    printf("My name is Matthew Clemens");
 }
