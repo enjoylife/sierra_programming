@@ -10,11 +10,9 @@ Date = 8/25/11
 #define NAME "Sierra Sporting Goods"
 
 void menu(void);
-void myName(void);
 
 int main(void)
 {
-    myName();
     menu();
     return 0;
 
@@ -23,29 +21,28 @@ int main(void)
 void menu(void)
 {
    int choice = 0; 
-   char repeat;
-    do {
-        printf("%s\n",NAME);
+       printf("%s\n",NAME);
         printf("1 = Add a record\n");
         printf("2 = Report\n");
         printf("3 = Delete a record\n");
         printf("4 = Change a record\n");
         printf("5 = Quit\n");
         printf("Choose the number for a menu option\n");
-        scanf("%d%*c", &choice);
 
-        if (choice==1||choice==2||choice==3||choice==4||choice==5) {
-        printf("%d was good choice. However were under construction.\n"
-                "Pick again, y or n?\n", choice);
-        scanf("%c%*c", &repeat);
+        while(scanf("%d%*c", &choice)==1){
+       
+        if (choice>5 || choice <1) 
+        {
+            printf("Thats not a choice!\nTry again!\n");
+            continue;
         }
-        else{
-           printf("thats not a choice!\n"); 
-           break;
+            printf("%d was good choice. However were under construction.\n", choice);
+            printf("Go Again if you would like. . .\n");
         }
-    } while (repeat!='n');
+        if(choice!= 1){
+            printf("learn to enter a number!\n");
+        }
+
+
 }
-void myName(void)
-{
-    printf("My name is Matthew Clemens");
-}
+
