@@ -1,0 +1,12 @@
+------ The well ordering Principle ------
+2.1 Well Ordering Proofs
+    idea: Every nonempty set of nonnegative integers has a smallest element.
+    method: To prove that "P(n) is true for all integers of N."
+        1. Define the set, C, of counterexamples that C is nonempty.
+        2. Assume for proof by contradiction that C is nonempty.
+        3. By the Well Ordering Principle, there will be a smallest element, n in C.
+        4. Reach a contradiction -often by showing how to use n to find another
+        member of C that is smaller than n.
+        5. Conclude that C must be empty, that is , no counterexamples exist. QED.
+
+

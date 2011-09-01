@@ -1,0 +1,15 @@
+------ Propositional formulas ------
+3.1 Propositions from propositions
+    idea: In english we can modify, combine, and relate propositions with words such as
+    "not", "and", "or", "implies", and "if-then".
+
+3.1.1 Not, And, Or
+
+    Idea: NOT
+    P  | Not(p)
+    ---------
+    T  | F
+    F  | T
+
+    
+
