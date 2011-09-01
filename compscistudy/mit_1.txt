@@ -1,0 +1,84 @@
+------ What is a proof? ------
+1.1 Mathematical proof
+    def: A formal proof of a proposition is a chain of logical deductions
+    leading to the proposition from a base set of axioms
+1.2 Propositions
+    def: A statement that is either true or false
+
+Random fact: A prime is an integer greater than one that is not
+            divisible by any integer greater than 1 besides itself  
+
+1.3 Predicates
+    def: A proposition whose truth depends on the value of one or more variables.
+    example: " N is a perfect square" is a predicate whose truth depends on the
+    value of N. 
+
+1.4 Axiomatic Method
+    history: standard procedure for truth as invented by Euclid, in Alexandria, Egypt 300 BC.
+            His idea was to begin with five assumptions about geometry. 
+    ideas: important propositions are called theorems.
+        A lemma is a preliminary proposition used to prove later propositions.
+        A corollary is proposition that follows in just a few logical steps.
+
+1.5 Our Axioms
+    ideas: ZFC axioms  important but much to primitive. 
+        Much like try to write programs in byte code.
+        instead take all axioms from  high school math.
+
+1.5.1 Logical Deductions
+    def: are used to prove new propositions using previously proved ones.
+    ideas: fundamental inference rule is modus ponens.
+
+    Modus Ponens
+        def: a proof of P together with a proof that P implies Q is a proof of Q.
+        ideas: key part of a inference rule is that it must be sound.
+            Many patterns in proofs. Few set "recipes" to follow.
+
+1.6 Proving an Implication
+    ideas: propostions of the form "If P then Q" are called implications.
+    short: "If P then Q".
+    
+    method: #1
+        1. Write "assume P".
+        2. Show that Q logically follows.
+    method: #2
+        1. Write "we prove the contrapositive" then state contrapositive.
+        random fact: contrapositive of the implication ("P implies Q") is not(Q) implies not(P).
+        2. Procced as in Method #1.
+
+1.7 Proving an "If and Only If"
+    short: "iff"
+
+    method: #1 Prove each statement implies the other
+        1. Write, "We prove P implies Q and vice-versa".
+        2. Write, "First we show P implies Q." Doing that with one of the previous methods from 1.6.
+        3. Write, "Now we show Q implies P".
+
+    method: #2 Construct a chain of Iffs.
+        1. Write, " we construct a chain of iff implications".
+        2. Prove P is equivalent to a second statement which is equivalent to a third statement
+        and so forth until you reach Q.
+
+1.8 Proof by cases
+    idea: break a complicated proof into cases and prove each case separately.
+
+1.9 Proof by contradiction
+    idea: a indirect proof shows that if a proposition were false then some false fact is true.
+    method: 
+        1. Write, "we use proof by contradiction".
+        2. Write, " Suppose P is false."
+        3. Deduce something know to be false.
+        4. Write, " This is a contradiction. There fore, P must be true."
+
+1.10 Good proofs in practice
+    idea: purpose of a proof is to establish the truth of an assertion with absolute certainty.
+    1. State your game plan.
+    2. Keep linear flow
+    3. Proof is an essay not a calculation.
+    4. Avoid excessive symbolism
+    5. Revise and simplify
+    6. Structure long proofs
+    7. Be wary of the "obvious"
+    8. Finish!
+
+    
