@@ -41,22 +41,18 @@ int main(void)
     printf("The price is ------ $%.2lf\n", price);
 
     printf("Would you like to see a alternate view? (type y/n)\n");
+    scanf(" %c%*c", &choice);
   }
-    while(scanf(" %c%*c", &choice)==1){
-       
+    while(choice=='Y');
+      /* 
         if (choice=='y' || choice =='Y') 
         {   printf("%20s %20s %20s %10s %10s\n", "Product number", 
                 "Product type", "product quantity", "cost", "price");
             printf("%20d %20d %20d %10.2lf %10.2lf\n", product_number, 
                     product_type, product_quantity, cost, price);
             break;
-        }
+        }*/
     
-        if(choice=='n'){
-            printf("Ok then, BYE!\n");
-            break;
-        } 
-    }
         
 
 return 0;
