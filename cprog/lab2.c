@@ -1,7 +1,7 @@
 /*------------------------------------------- 
 Program: Sporting Good Menu
 Assignment for Week 2  
-Tested and Compiled with gcc on linux
+Tested  with gcc on linux
 Author = Matthew Clemens
 Date = 8/29/11
 --------------------------------------------*/
@@ -37,7 +37,7 @@ int main(void)
     printf("The cost is ------ $%.2lf\n", cost);
     printf("The price is ------ $%.2lf\n", price);
 
-    printf("Would you like to see and alternate view? (type y/n)\n");
+    printf("Would you like to see a alternate view? (type y/n)\n");
 
     while(scanf(" %c%*c", &choice)==1){
        
