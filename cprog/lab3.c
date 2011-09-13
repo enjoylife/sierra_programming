@@ -67,7 +67,7 @@ int main(void)
     printf("Would you like to continue? (type Y/N)\n");
     scanf(" %c%*c", &choice);
   }
-    while(choice=='Y');
+    while(toupper(choice)=='Y');
 
    /*Finally calculations for business logic */
    total_price = Price(sum_quantity, sum_price);
