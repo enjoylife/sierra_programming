@@ -49,7 +49,7 @@ int main(void)
     printf("The product type is ------ %d\n", product_type);
     printf("The quantity is ------ %d\n", product_quantity);
     printf("The cost is ------ $%.2lf\n", product_cost);
-    printf("The price is ------ $%.2lf\n", product_price);
+    printf("The price is ------ $%.2lf\n\n", product_price);
 
 
     /* Running total of all entries */
