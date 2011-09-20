@@ -1,0 +1,27 @@
+Fundamental Options and Futures markets
+---------------------------------------
+
+Chapter 1
+Futures Contracts
+-----------------
+
+1.1
+futures contracts
+    def- agreement to buy or sell an asset at a cetrain time in the future for a certain price.
+
+    exchanges- Chicago Board of Trade, Chicago Mercantile Exchange,
+            London International Financial Futures and Options Exchange, and Eurex
+
+buying investor-"long futures"
+Selling person-"short futures position"
+
+prices are determined as usual- "by supply and demand"
+
+lots of sellers- Lowers price
+more people that want to buy- Raises price
+
+1.2
+History of Futures Markets
+
+originally developed to meet the needs of farmers and merchancts.
+Used to elimante risks because of uncertain future pices.
