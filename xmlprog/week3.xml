@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+
+<music>
+    <cd upc="234252 424758" genre="alternative">
+        <title>The Resistance</title>
+        <artist>Muse</artist>
+        <publishingInfo>
+            <label>Atco</label>
+            <label>Mushroom</label>
+            <label>Helium 3</label>
+            <year>2009</year>
+        </publishingInfo>
+        <songInfo>
+            <numberOfSongs>11</numberOfSongs>
+            
+            <song>
+                <songTitle>Uprising</songTitle>
+                <songLength>5:03</songLength>
+            </song>
+                
+           
+            <song>
+                <songTitle>Resistance</songTitle>
+                <songLength>5:46</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Undisclosed Desires</songTitle>
+                <songLength>3:56</songLength>
+            </song>
+                
+            <song>
+                <songTitle>United States Of Eurasia</songTitle>
+                <songLength>5:47</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Guiding Light</songTitle>
+                <songLength>4:13</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Unatural Selection</songTitle>
+                <songLength>4:06</songLength>
+            </song>
+          
+            <song>
+                <songTitle>Mk Ultra</songTitle>
+                <songLength>5:38</songLength>
+            </song>
+           
+            
+            <song>
+                <songTitle>I Belong to You</songTitle>
+                <songLength>5:38</songLength>
+            </song>
+           
+
+            <song>
+                <songTitle>Exogenesis: Symphony Part 1</songTitle>
+                <songLength>4:18</songLength>
+            </song>
+            <song>
+                <songTitle>Exogenesis: Symphony Part 2</songTitle>
+                <songLength>3:56</songLength>
+            </song>
+            <song>
+                <songTitle>Exogenesis: Symphony Part 3</songTitle>
+                <songLength>4:37</songLength>
+            </song>
+           
+
+
+
+
+
+
+
+
+
+        </songInfo>
+        </cd>
+        
+        <cd upc="" genre="">
+        <title></title>
+        <artist></artist>
+        <publishingInfo>
+            <label></label>
+            <year></year>
+        </publishingInfo>
+        <songInfo>
+            <numberOfSongs></numberOfSongs>
+            <song>
+                <songTitle></songTitle>
+                <songLength></songLength>
+            </song>
+        
+        </songInfo>
+        </cd>
+        
+        <cd upc="" genre="">
+        <title></title>
+        <artist></artist>
+        <publishingInfo>
+            <label></label>
+            <year></year>
+        </publishingInfo>
+        <songInfo>
+            <numberOfSongs></numberOfSongs>
+            <song>
+                <songTitle></songTitle>
+                <songLength></songLength>
+            </song>
+        
+        </songInfo>
+    </cd>
+
+
+</music>
