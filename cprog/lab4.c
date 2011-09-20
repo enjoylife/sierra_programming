@@ -18,8 +18,9 @@ int main(void)
     char choice;
     int product_number, product_type, product_quantity;  
     double product_cost, product_price; 
-    double price, cost, profit, total_price, total_cost, total_profit;
+    double price, cost, profit, total_price, total_cost;
 /*sums */
+    double sum_profit = 0;
     double sum_price = 0;
     double sum_cost = 0;
     int sum_quantity = 0;
@@ -52,15 +53,19 @@ int main(void)
     printf("The price is ------ $%.2lf\n\n", product_price);
 
 
-    /* Running total of all entries */
-    sum_price += product_price;
-    sum_cost += product_cost;
     sum_quantity+=1;
 
     /*Business logic functions */
     price = Price(product_quantity , product_price);
     cost = Cost(product_cost , product_quantity);
     profit = Profit(price, cost);
+
+ /*  Total for all entries */
+/*Finally calculations for business logic */
+    sum_price += price;
+    sum_cost += cost;
+    sum_profit += profit;
+
 
 
     /* Single product business display */
@@ -73,15 +78,11 @@ int main(void)
   }
     while(toupper(choice)=='Y');
 
-   /*Finally calculations for business logic */
-   total_price = Price(sum_quantity, sum_price);
-   total_cost = Cost(sum_cost, sum_quantity);
-   total_profit = Profit(total_price, total_cost);
    /* Summations of Products */
    printf("Total count of all products -> %d\n", sum_quantity);
-   printf("Total of all prices ------ %4.2lf\n", total_price);
-   printf("Total of all costs ------ $%4.2lf\n", total_cost);
-   printf("Total profit ------ $ %4.2lf\n", total_profit);
+   printf("Total of all prices ------ %4.2lf\n", sum_price);
+   printf("Total of all costs ------ $%4.2lf\n", sum_cost);
+   printf("Total profit ------ $ %4.2lf\n", sum_profit);
         
 
 return 0;
@@ -109,7 +110,7 @@ void ValidateInt(int * check, int a, int b){
        
         if (*check > b|| *check < a) 
         {
-            printf("Invalid entry.\nTry again!\n");
+            printf("Invalid entry.\nTry again!\n\n");
         }
         else{
             printf("Valid entry.\n");
@@ -123,7 +124,7 @@ void ValidateDouble(double * check, double a, double b){
        
         if (*check > b|| *check < a) 
         {
-            printf("Invalid entry.\nTry again!\n");
+            printf("Invalid entry.\nTry again!\n\n");
         }
         else{
             printf("Valid entry.\n");
