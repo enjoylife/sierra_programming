@@ -8,7 +8,7 @@ class CodeWalk {
      * c.Average(15,5,10) -> 10
      */
     double Average(double num1, double num2, double num3){
-        return (num1 + num2 + num3)/3
+        return (num1 + num2 + num3)/3;
     }
 
     /**
@@ -22,9 +22,10 @@ class CodeWalk {
      */
     String CloseTo20(int num1, int num2, int num3){
         if(num1 <20 || num2 <20 || num3<20){
-            return  "Cha-ching!"
+            return  "Cha-ching!";
         }
-        else{ return "Crud!"
+        else{ 
+            return "Crud!";
         }
 
     }
@@ -40,10 +41,10 @@ class CodeWalk {
      */
     int TotalDays(int weeks, int days){
         if (weeks <0 || days <0 ){
-            return 0
+            return 0;
         }
         else{
-            return days + (weeks*7)
+            return days + (weeks*7);
         }
     }
     /** 
@@ -53,17 +54,24 @@ class CodeWalk {
      * dimes, nickels, and pennies, it takes.
      * CodeWalk c = new CodeWalk();
      * c.ChangeBack(1.0) -> " Your change for $1.00 is  4 quarters."
-     * c.ChangeBack(2.17) -> " Your change for $2.17 is 8 quarters, 1 dime, 1 nickel, and 2 pennies."
-     * c.ChangeBack(.37) -> "Your change for $0.37 is 3 dimes, 1 nickel, and 2 pennies."
+     * c.ChangeBack(2.17) -> " Your change for $2.17 is 8 quarters, 1 dimes, 1 nickels, and 2 pennies."
+     * c.ChangeBack(.37) -> "Your change for $0.37 is 3 dimes, 1 nickels, and 2 pennies."
      */
 
     String ChangeBack(double money){
+        double quarters, dimes, nickels, pennies;
         if(money<=0){
-            return "No change back for you!"
+            return "No change back for you!";
         }
-        else {
+        else if(money%1==0)  {
+            return "Your change for $ "+ money+" is " +
 
+            
+         quarters= money/4;
+         dimes = quarters/.10;
+         nickels = dimes /.5;
+         pennies = nickels/.1;
+         return "Your change for $" + money + " is " + quarters +" quarters, " + dimes +" dimes, "+ nickels+" nickels, "+pennies+" pennies.";
         }
-    
     }
 }
