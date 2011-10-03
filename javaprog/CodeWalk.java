@@ -53,23 +53,27 @@ class CodeWalk {
      * return the amount back as a string of quarters,
      * dimes, nickels, and pennies, it takes.
      * CodeWalk c = new CodeWalk();
-     * c.ChangeBack(1.0) -> " Your change for $1.00 is  4 quarters, 0 dimes, 0 nickels, and 0 pennies."
-     * c.ChangeBack(2.17) -> " Your change for $2.17 is 8 quarters, 1 dimes, 1 nickels, and 2 pennies."
-     * c.ChangeBack(.37) -> "Your change for $0.37 is 3 dimes, 1 nickels, and 2 pennies."
+     * c.ChangeBack(1.0) -> "Your change for $1.00 is  4 quarters, 0 dimes, 0 nickels, and 0 pennies."
+     * c.ChangeBack(2.17) -> "Your change for $2.17 is 8 quarters, 1 dimes, 1 nickels, and 2 pennies."
+     * c.ChangeBack(.37) -> "Your change for $0.37 is 0 quarters, 3 dimes, 1 nickels, and 2 pennies."
      */
 
     String ChangeBack(double money){
-        double quarters, dimes, nickels, pennies;
+        int quarters, dimes, nickels, pennies;
         if(money<=0){
             return "No change back for you!";
         }
         else   {
-         quarters= money%4;
-         dimes = quarters%.10;
-         nickels = dimes %.5;
-         pennies = nickels%.1;
+         double finmoney = money;
+         quarters= (int)Math.floor(money/.25);
+         money = money-(quarters*.25);
+         dimes = (int)Math.floor(money/.10);
+         money = money-(dimes*.1);
+         nickels = (int)Math.floor(money/.05);
+         money = money-(nickels*.05);
+         pennies = (int)Math.ceil(money/.01);
 
-                    return "Your change for $" + money + " is " + quarters +" quarters, " + dimes +" dimes, "+ nickels+" nickels, "+pennies+" pennies.";
+                    return "Your change for $" + finmoney + " is " + quarters +" quarters, " + dimes +" dimes, "+ nickels+" nickels, "+pennies+" pennies.";
         }
     }
 
@@ -92,14 +96,14 @@ class CodeWalk {
         test2=(side1+side3)>side2;
         test3=(side2+side3)>side1;
 
-        if(!test1 && !test2 && !test3){
+        if(!(test1 && test2 && test3)){
         return "not a triangle";
         }
         else{ 
             if(side1==side2 && side1==side3){
                 return "equilateral";
             }
-            else if(side1!=side2 || side2!=side3 ||sid1!=side3){
+            else if(side1!=side2 || side2!=side3 ||side1!=side3){
                 return "scalene";
             }
             else{
