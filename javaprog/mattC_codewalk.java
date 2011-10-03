@@ -92,12 +92,19 @@ class CodeWalk {
         test2=(side1+side3)>side2;
         test3=(side2+side3)>side1;
 
-        if(!(test1 &&test2 &&test3)){
+        if(!test1 && !test2 && !test3){
         return "not a triangle";
         }
         else{ 
-            test1=(side1==side2 && side1==side3);
-            return "";
+            if(side1==side2 && side1==side3){
+                return "equilateral"
+            }
+            else if(side1!=side2 || side2!=side3 ||sid1!=side3){
+                return "scalene"
+            }
+            else{
+                return "isoscoles"
+            }
         } 
     }
 }
