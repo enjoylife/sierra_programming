@@ -11,8 +11,8 @@ Date = 10/03/11
 double Profit(double, double);
 double Price(int, double);
 double Cost(double, int);
-void ValidateInt(int * check, int a , int b);
-void ValidateDouble(double * check, double a, double b);
+void ValidateInt(int * check, int a , int b, char[]);
+void ValidateDouble(double * check, double a, double b, char[]);
 
 int menu(void);
 void add(void);
@@ -20,43 +20,16 @@ void show(int, int, int, double, double);
 
 int main(void)
 {
-    int choice;
-    choice = menu();
-    add();
-
-    char choice;
-   double price, cost, profit, total_price, total_cost;
-/*sums */
-    double sum_profit = 0;
-    double sum_price = 0;
-    double sum_cost = 0;
-    int sum_quantity = 0;
-
-
-    sum_quantity+=1;
-
-    /*Business logic functions */
-    price = Price(product_quantity , product_price);
-    cost = Cost(product_cost , product_quantity);
-    profit = Profit(price, cost);
-
- /*  Total for all entries */
-/*Finally calculations for business logic */
-    sum_price += price;
-    sum_cost += cost;
-    sum_profit += profit;
-
-
-
-    /* Single product business display */
-    printf("Total product price ------ $%4.2lf\n", price);
-    printf("Total product cost ------ $%4.2lf\n", cost);
-    printf("Total product profit ------ $%4.2lf\n", profit);
     
-    printf("Would you like to continue? (type Y/N)\n");
-    scanf(" %c%*c", &choice);
-  }
-    while(toupper(choice)=='Y');
+    int choice;
+    do{
+    choice = menu(); 
+    add();
+   printf("Totals of all products\n");
+   showTotals();
+   
+    }while(scanf("%d%*c", &choice)==5)
+   sum_quantity+=1;
 
    /* Summations of Products */
    printf("Total count of all products -> %d\n", sum_quantity);
@@ -85,7 +58,8 @@ double Cost(double c, int q){
     total = c * q;
     return total;
 }
-void ValidateInt(int * check, int a, int b){
+void ValidateInt(int * check, int a, int b, char []title){
+    printf("Enter the %s\n", title);
     while(scanf("%d%*c", check)==1){
        
         if (*check > b|| *check < a) 
@@ -99,7 +73,8 @@ void ValidateInt(int * check, int a, int b){
     }
 }
 
-void ValidateDouble(double * check, double a, double b){
+void ValidateDouble(double * check, double a, double b, char []title){
+    printf("Enter the %s\n", title);
     while(scanf("%lf%*c", check)==1){
        
         if (*check > b|| *check < a) 
@@ -113,8 +88,7 @@ void ValidateDouble(double * check, double a, double b){
     }
 
 }
-int menu(void)
-{
+int menu(void){
    int choice = 0; 
        printf("%s\n",NAME);
         printf("1 = Add a record\n");
@@ -141,28 +115,35 @@ void add(void){
 
     int product_number, product_type, product_quantity;  
     double product_cost, product_price; 
+    char choice;
     
    do{
        /* User data entry*/
     printf("%s\n\n", NAME);
-    printf("Enter the product number:");
-    ValidateInt(&product_number,1,9999);
-
-    printf("Enter the product type:");
-    ValidateInt(&product_type,1,5);
-
-    printf("Enter the quantity:");
-    ValidateInt(&product_quantity,1,50);
-
-    printf("Enter cost:");
-    ValidateDouble(&product_cost,5.0,900.0);
-
-    printf("Enter the price:");
-    ValidateDouble(&product_price,6.0,1000.0);
-
+    ValidateInt(&product_number,1,9999, "number");
+    ValidateInt(&product_type,1,5, "type");
+    ValidateInt(&product_quantity,1,50, "quantity");
+    ValidateDouble(&product_cost,5.0,900.0,"cost");
+    ValidateDouble(&product_price,6.0,1000.0, "price");
     void show(product_number, product_type, product_quantity, product_cost, product_price);
-    }
+     
+   
+    printf("These are this entries calculations.\n");
+
+    double price, cost, profit, total_price, total_cost;
+
+    /*Business logic functions */
+    price = Price(product_quantity , product_price);
+    cost = Cost(product_cost , product_quantity);
+    profit = Profit(price, cost);
+
+    showTotal(price, cost, profit);
+
+    printf("Would you like to continue? (type Y/N)\n");
+    scanf(" %c%*c", &choice);
+  
     while(toupper(choice)=='Y');
+    }
 }
 
 void show(product_number, product_type, product_quantity, product_cost, product_price){
@@ -173,4 +154,27 @@ void show(product_number, product_type, product_quantity, product_cost, product_
     printf("The quantity is ------ %d\n", product_quantity);
     printf("The cost is ------ $%.2lf\n", product_cost);
     printf("The price is ------ $%.2lf\n\n", product_price);
+}
+
+void showTotal(price, cost, profit){
+
+    /* Single product business display */
+    printf("Total product price ------ $%4.2lf\n", price);
+    printf("Total product cost ------ $%4.2lf\n", cost);
+    printf("Total product profit ------ $%4.2lf\n", profit);
+}
+
+void totalCalc(price, cost, profit){
+ /*sums */
+    double sum_profit = 0;
+    double sum_price = 0;
+    double sum_cost = 0;
+    int sum_quantity = 0;
+
+/*  Total for all entries */
+/*Finally calculations for business logic */
+    sum_price += price;
+    sum_cost += cost;
+    sum_profit += profit;
+
 }
