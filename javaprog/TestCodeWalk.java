@@ -4,22 +4,22 @@ class TestCodeWalk{
     
     void  TestAverage(Tester t){
         CodeWalk c = new CodeWalk();
-        t.checkExpect(c.Average(1,1,1), 1;
-        t.checkExpect(c.Average(3,4,5),4);
-        t.checkExpect(c.Average(15,5,10),10);
+        t.checkInexact(c.average(1,1,1), 1,.01);
+        t.checkInexact(c.average(3,4,5),4,.01);
+        t.checkInexact(c.average(15,5,10),10,.01);
     }
     void TestCloseTo20(Tester t){
         CodeWalk c = new CodeWalk();
-        t.checkExpect(c.CloseTo20(30,10,50),"Cha-ching!");
-        t.checkExpect(c.CloseTo20(31,42,19), "Cha-ching!");
-        t.checkExpect(c.CloseTo20(41,21,20), "Crud!");
+        t.checkExpect(c.closeTo20(30,10,50),"Cha-ching!");
+        t.checkExpect(c.closeTo20(31,42,19), "Cha-ching!");
+        t.checkExpect(c.closeTo20(41,21,20), "Crud!");
     }
 
     void TestTotalDays(Tester t){
         CodeWalk c = new CodeWalk();
-        t.checkExpect(c.TotalDay(2,4),18);
-        t.checkExpect(c.TotalDay(1,5),12);
-        t.checkExpect(c.TotalDay(0,3),3);
+        t.checkExpect(c.totalDay(2,4),18);
+        t.checkExpect(c.totalDay(1,5),12);
+        t.checkExpect(c.totalDay(0,3),3);
     }
 
     void TestChangeBack(Tester t){
