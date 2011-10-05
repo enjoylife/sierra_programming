@@ -16,6 +16,7 @@ void ValidateInt(int * check, int a , int b, char[]);
 void ValidateDouble(double * check, double a, double b, char[]);
 
 int menu(void);
+int menuValidate(char  [], int , int );
 void add(void);
 void show(int, int, int, double, double);
 void showTotal(int, double, double, double);
@@ -58,21 +59,22 @@ int menu(void){
         printf("3 = Delete a record\n");
         printf("4 = Change a record\n");
         printf("5 = Quit\n");
-        printf("Choose the number for a menu option\n");
-
-        while(scanf("%d%*c", &choice)==1){
-       
-        if (choice>5 || choice <1) 
-        {
-            printf("Thats not a choice!\nTry again!\n");
+        menuValidate("Choose the number for a menu option",1, 5);
+}
+int menuValidate(char  mesg[], int low, int high){
+    int choice;
+    printf("%s\n",mesg);
+    while(scanf("%d%*c", &choice)==1){
+    if (choice>high || choice <low) {
+        printf("Thats not a choice!\nTry again!\n");
         }
-        
-        else{
-            printf("Valid Entry\n");
-            return choice;
+    else{
+        printf("Valid Entry\n");
+        return choice;
         }
     }
 }
+
 void add(void){
 
     int product_number, product_type, product_quantity;  
