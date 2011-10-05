@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=t
+comment0.target=void\ testAverage(tester.Tester)
+comment1.params=t
+comment1.target=void\ testCloseTo20(tester.Tester)
+comment2.params=t
+comment2.target=void\ testTotalDays(tester.Tester)
+comment3.params=t
+comment3.target=void\ testChangeBack(tester.Tester)
+comment4.params=t
+comment4.target=void\ testTriShape(tester.Tester)
+numComments=5

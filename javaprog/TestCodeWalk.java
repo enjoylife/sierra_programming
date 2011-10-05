@@ -25,8 +25,8 @@ class TestCodeWalk{
     void TestChangeBack(Tester t){
         codeWalk c = new CodeWalk();
         t.checkExpect(c.ChangeBack(1.0), "Your change for $1.00 is  4 quarters, 0 dimes, 0 nickels, and 0 pennies.");
-        t.checkExpect(c.ChangeBack(2.17),  "Your change for $1.00 is  8 quarters, 1 dimes, 1 nickels, and 2 pennies.");
-        t.checkExpect(c.ChangeBack(.37), "Your change for $1.00 is  4 quarters, 0 dimes, 0 nickels, and 0 pennies.");
+        t.checkExpect(c.ChangeBack(2.17),  "Your change for $2.17 is  8 quarters, 1 dimes, 1 nickels, and 2 pennies.");
+        t.checkExpect(c.ChangeBack(.37), "Your change for $.37 is  4 quarters, 0 dimes, 0 nickels, and 0 pennies.");
     }
 
     void TestTriShape(Tester t){

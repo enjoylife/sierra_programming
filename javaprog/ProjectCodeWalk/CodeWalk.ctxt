@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=num1\ num2\ num3
+comment0.target=double\ average(double,\ double,\ double)
+comment0.text=\n\ average\:\ num1\ (double)\ num2\ (double)\ num3\ (double)\ ->\ double\n\ Given\ three\ numbers\ return\ their\ average.\n\ CodeWalk\ c\ \=\ new\ CodeWalk();\n\ c.average(1,1,1)\ ->\ 1\n\ c.average(3,4,5)\ ->\ 4\n\ c.average(15,5,10)\ ->\ 10\n
+comment1.params=num1\ num2\ num3
+comment1.target=java.lang.String\ closeTo20(int,\ int,\ int)
+comment1.text=\n\ closeTo20\:\ \ num1\ (int)\ num2\ (int)\ num3\ (int)\ ->\ String\n\ Given\ three\ numbers\ return\ "Cha-ching\!"\ if\ at\ least\ one\ of\ them\ is\ less\ than\ 20,\n\ And\ "Crud\!"\ otherwise.\n\ CodeWalk\ c\ \=\ new\ CodeWalk();\n\ c.closeTo20(30,10,50)\ ->\ "Cha-ching\!"\n\ c.closeTo20(31,42,19)->\ "Cha-ching\!"\n\ c.closeTo20(41,21,20)\ ->\ "Crud\!"\n
+comment2.params=weeks\ days
+comment2.target=int\ totalDays(int,\ int)
+comment2.text=\n\ TotalDays\:\ weeks\ (int)\ days\ (int)\ ->\ int\n\ Given\ the\ Total\ number\ of\ weeks\ and\ days,\ return\ the\ \n\ Sum\ of\ the\ days.\n\ CodeWalk\ c\ \=\ new\ CodeWalk();\n\ c.totalDays(2,4)\ ->\ 18\n\ c.totalDays(1,5)\ ->\ 12\n\ c.totalDays(0,3)\ ->\ 3\n
+comment3.params=money
+comment3.target=java.lang.String\ changeBack(double)
+comment3.text=\ \n\ changeBack\:\ money\ (double)\ ->\ String\n\ Given\ a\ dollar\ amount\ as\ a\ numerical\ value,\ \n\ return\ the\ amount\ back\ as\ a\ string\ of\ quarters,\n\ dimes,\ nickels,\ and\ pennies,\ it\ takes.\n\ CodeWalk\ c\ \=\ new\ CodeWalk();\n\ c.changeBack(1.0)\ ->\ "Your\ change\ for\ $1.00\ is\ \ 4\ quarters,\ 0\ dimes,\ 0\ nickels,\ and\ 0\ pennies."\n\ c.changeBack(2.17)\ ->\ "Your\ change\ for\ $2.17\ is\ 8\ quarters,\ 1\ dimes,\ 1\ nickels,\ and\ 2\ pennies."\n\ c.changeBack(.37)\ ->\ "Your\ change\ for\ $0.37\ is\ 1\ quarters,\ 1\ dimes,\ 0\ nickels,\ and\ 2\ pennies."\n
+comment4.params=side1\ side2\ side3
+comment4.target=java.lang.String\ triShape(int,\ int,\ int)
+comment4.text=\n\ triShape\:\ side1\ (int)\ side2\ (int)\ side3(int)\ ->\ String\n\ Given\ the\ lengths\ of\ the\ sides\ of\ a\ triangle,\ return\ the\ strings\ ,\ \n\ "equilateral",\ "isoscoles",\ "scalene",or\ "not\ a\ triangle"\ depending\ upon\ the\ mathematical\ \n\ definitions\ of\ side\ length\ for\ each.\n\ CodeWalk\ c\ \=\ new\ CodeWalk();\n\ c.TriShape(2,2,2)\ ->\ "equilateral"\n\ c.TriShape(3,4,5)\ ->\ "scalene"\n\ c.TriShape(1,2,7)\ ->\ "not\ a\ triangle"\n\ c.TriShape(6,6,9)\ ->\ "isoscoles"\n\ c.TriShape(0,0,0)\ ->\ "not\ a\ triangle"\n
+numComments=5
