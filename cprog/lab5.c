@@ -7,6 +7,7 @@ Date = 10/03/11
 --------------------------------------------*/
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdarg.h>
 #define NAME "Sierra Sporting Goods"
 
 double profit(double, double);
@@ -15,6 +16,7 @@ double cost(double, int);
 void printValidInt(int * check, int a , int b, char[]);
 void printValidDouble(double * check, double a, double b, char[]);
 
+//bool validString(char mesg[], char *ans[]);
 int menu(void);
 int validInt(char  [], int , int);
 char validChar(char [], char);
@@ -111,8 +113,8 @@ void add(void){
 void addEntry(void){
     int product_number, product_type, product_quantity;  
     double product_cost, product_price; 
-    char choice;
- 
+   // char choice;
+    bool choice; 
    do{
        /* User data entry*/
     printValidInt(&product_number,1,9999, "product number");
@@ -123,6 +125,8 @@ void addEntry(void){
 
     show(product_number, product_type, product_quantity, product_cost, product_price);
 
+   // char * inputstrings[8]={"y","Y","yes","Yes","n","N","No","no"};
+     //choice =validString("Would you like to add another? (type Y/N)\n", inputstrings);
     choice=validChar("Would you like to add another? (type Y/N)\n", 'Y');
    }while(toupper(choice)=='Y');
 }
@@ -244,3 +248,30 @@ char validChar(char  mesg[], char choice){
     }while(!correct);
     return pick;
 }
+/*
+bool validString(char mesg[], char *ans[]){
+    char pick[5];
+    bool input = false;
+    bool correct = false;
+    int size;
+    int i = 0;
+    printf("%s\n",mesg);
+    size = sizeof(ans);
+    do{
+       fgets(pick,sizeof(pick),stdin); 
+        for (i = 0; i < size; i++) {
+            if (strncmp(pick,ans[i],size)) {
+        printf("Thats not the right choice!\nTry again!\n");
+        getchar();
+        }
+    else{
+        printf("Valid Entry\n\n");
+        correct = true;
+        }
+    }
+    }while(!correct);
+    return correct;
+}
+*/
+
+
