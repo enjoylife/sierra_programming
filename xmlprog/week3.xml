@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
+<!DOCTYPE music SYSTEM "music.dtd">
 
 <music>
-    <cd upc="234252 424758" genre="Alternative">
+    <cd upc="_234252 424758" genre="other">
         <title>The Resistance</title>
         <artist>Muse</artist>
         <publishingInfo>
-            <label>Atco</label>
-            <label>Mushroom</label>
-            <label>Helium 3</label>
+            <label>Atco-Mushroom-Helium 3</label>
             <year>2009</year>
         </publishingInfo>
         <songInfo>
@@ -68,12 +67,11 @@
         </songInfo>
     </cd>
         
-        <cd upc="" genre="Alternative">
+        <cd upc="_254242 424758" genre="other">
         <title>The Quilt</title>
         <artist>Gym Class Heroes</artist>
         <publishingInfo>
-            <label>Decaydance</label>
-            <label>Fueled by Ramen</label>
+            <label>Decaydance-Fueled by Ramen</label>
             <year>2008</year>
         </publishingInfo>
         <songInfo>

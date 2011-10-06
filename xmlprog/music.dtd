@@ -1,0 +1,22 @@
+<!ELEMENT music (cd+)>
+    <!ELEMENT cd (title, artist, publishingInfo, songInfo)>
+    <!ATTLIST cd 
+        upc ID (#REQUIRED)
+        genre (Classical|Rock|Jazz|Country|Hip-Hop|Rap|Other) "Other">
+       <!ELEMENT title (#PCDATA)>
+       <!ELEMENT artist (#PCDATA)>
+       <!ELEMENT  publishingInfo (label, year)>
+           <!ELEMENT label (#PCDATA)>
+           <!ELEMENT year (#PCDATA)>
+       <!ELEMENT songInfo (numberOfSongs|song+)>
+           <!ELEMENT numberOfSongs (#PCDATA)>
+           <!ELEMENT song (songTitle,songLength)>
+               <!ELEMENT songTitle (#PCDATA)>
+               <!ELEMENT songLength (#PCDATA)>
+           
+
+           
+
+
+
+
