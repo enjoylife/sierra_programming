@@ -2,7 +2,7 @@
 <!DOCTYPE music SYSTEM "music.dtd">
 
 <music>
-    <cd upc="_234252 424758" genre="other">
+    <cd upc="_234252424758" genre="Other">
         <title>The Resistance</title>
         <artist>Muse</artist>
         <publishingInfo>
@@ -67,7 +67,7 @@
         </songInfo>
     </cd>
         
-        <cd upc="_254242 424758" genre="other">
+        <cd upc="_254242424758" genre="Other">
         <title>The Quilt</title>
         <artist>Gym Class Heroes</artist>
         <publishingInfo>
