@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ setup()
+comment0.text=\ \ none\n\ \n\ EvenOdd\ e\=\ new\ EvenOdd();\n\ e.player1\ ->\ 0\n\ e.player2\ ->\ 0\n\ e.pot\ ->\ 15\n\ e.player1\ +\ e.player2\ +\ e.pot\ ->\ 15\n
+comment1.params=move
+comment1.target=boolean\ p1move(int)
+comment1.text=\n\ p1move\ \:\ move\ (int)\ ->\ boolean\n\ Given\ the\ move\ that\ player1\ chooses,\ return\n\ whether\ is\ was\ a\ valid\ move,\ and\ substract\ that\ amount\ from\ pot\n\ and\ add\ that\ amount\ to\ player1.\n\ \n\ EvenOdd\ e\=\ new\ EvenOdd();\n\ e.setup();\n\ e.p1move(3)\ ->\ true\n\ e.player1\ ->\ 3\n\ e.player2\ ->\ 0\n\ e.pot\ ->\ 12\n\ e.p1move(4)\ ->\ false\n\ e.p1move(1)\ ->\ true\n\ e.p1move(2)\ ->\ true\n
+comment2.params=move
+comment2.target=boolean\ p2move(int)
+comment2.text=\n\ p2move\ \:\ move\ (int)\ ->\ boolean\n\ Given\ the\ move\ that\ player2\ chooses,\ return\n\ whether\ is\ was\ a\ valid\ move,\ and\ substract\ that\ amount\ from\ pot\n\ and\ add\ that\ amount\ to\ player2.\n\ \n\ EvenOdd\ e\=\ new\ EvenOdd();\n\ e.setup();\n\ e.p2move(3)\ ->\ true\n\ e.player1\ ->\ 0\n\ e.player2\ ->\ 3\n\ e.pot\ ->\ 12\n\ e.p2move(4)\ ->\ false\n\ e.p2move(1)\ ->\ true\n\ e.p2move(2)\ ->\ true\n
+comment3.params=move
+comment3.target=boolean\ isValidMove(int)
+comment3.text=\n\ isValidMove\ \:\ move\ (int)\ ->\ boolean\n\ Given\ a\ move,\ return\ whether\ it\ is\ valid\ or\ not.\n\ \n\ EvenOdd\ e\=\ new\ EvenOdd();\n\ e.setup();\n\ e.isValidMove(0)\ ->\ false\n\ e.isValidMove(5)\ ->\ false\n\ e.isValidMove(3)\ ->\ true\n\ e.isValidMove(4)\ ->\ false\n\ e.isValidMove(1)\ ->\ true\n\ e.isValidMove(2)\ ->\ true\n\ e.isValidMove(-1)\ ->\ false\n
+comment4.params=
+comment4.target=java.lang.String\ status()
+comment4.text=\n\ status\ \:\ none\ ->\ String\n\ Return\ a\ string\ showing\ the\ current\ state\ of\ the\ game\n\ in\ the\ format\ "Player1\:\ __\ Player2\:\ __\ Pot\:\ __"\n\ \n\ EvenOdd\ e\=\ new\ EvenOdd();\n\ e.setup();\n\ e.status()\ ->\ "Player1\:\ 0\ Player2\:\ 0\ Pot\:\ 15"\n\ e.p1Move(3)\ ->\ true\n\ e.status()\ ->\ "Player1\:\ 3\ Player2\:\ 0\ Pot\:\ 12"\n
+comment5.params=
+comment5.target=int\ whoWon()
+comment5.text=\n\ whoWon\:\ none\ ->\ int\n\ Return\ a\ int\ based\ upon\ if\ the\ pot\ is\ at\ zero\ and\ \n\ which\ player\ has\ an\ even\ number\ in\ their\ counter.\n\ \n\ EvenOdd\ e\ \=\ new\ EvenOdd();\n\ e.setup();\n\ e.player1\=7;\n\ e.player2\=8;\n\ e.pot\=\ 0;\n\ e.whoWon();\ ->\ 2\n
+numComments=6
