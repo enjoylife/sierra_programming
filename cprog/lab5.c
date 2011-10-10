@@ -61,34 +61,10 @@ int menu(void){
         printf("1 = Add a record\n");
         printf("2 = Report\n");
         printf("3 = Delete a record\n");
-        printf("4 = Change a record\n");
-        printf("5 = Quit\n");
+        printf("4 = Change a record\n"); printf("5 = Quit\n");
         validInt("Choose the number for a menu option",1, 5);
 }
-
-void add(void){
-
-    int product_number, product_type, product_quantity;  
-    double product_cost, product_price; 
-    char choice;
-    double vprice, vcost, vprofit, total_price, total_cost;
-    /*sums */
-    double sum_profit = 0;
-    double sum_price = 0;
-    double sum_cost = 0;
-    int sum_quantity = 0;
-
-    printf("%s\n\n", NAME);
-   do{
-       /* User data entry*/
-    printValidInt(&product_number,1,9999, "product number");
-    printValidInt(&product_type,1,5, "product type");
-    printValidInt(&product_quantity,1,50, "product quantity");
-    printValidDouble(&product_cost,5.0,900.0,"product cost");
-    printValidDouble(&product_price,6.0,1000.0, "product price");
-
-    show(product_number, product_type, product_quantity, product_cost, product_price);
-    /* 
+   /* 
     //Business logic functions 
     vprice = price(product_quantity , product_price);
     vcost = cost(product_cost , product_quantity);
@@ -104,17 +80,13 @@ void add(void){
     showTotal(sum_quantity, vprice, vcost, vprofit);
     */
 
-    printf("Would you like to add another? (type Y/N)\n");
-    scanf(" %c%*c", &choice);
-  
-   }while(toupper(choice)=='Y');
-    
-}
 void addEntry(void){
     int product_number, product_type, product_quantity;  
+     char pick;
+    bool input = false;
+    bool correct = false;
     double product_cost, product_price; 
    // char choice;
-    bool choice; 
    do{
        /* User data entry*/
     printValidInt(&product_number,1,9999, "product number");
@@ -127,8 +99,20 @@ void addEntry(void){
 
    // char * inputstrings[8]={"y","Y","yes","Yes","n","N","No","no"};
      //choice =validString("Would you like to add another? (type Y/N)\n", inputstrings);
-    choice=validChar("Would you like to add another? (type Y/N)\n", 'Y');
-   }while(toupper(choice)=='Y');
+   printf("Would you like to add another? (type Y/N)\n");
+    do{
+        input =scanf("%c%*c", &pick);
+            if (toupper(pick)!='N'&& toupper(pick)!='Y') {
+        printf("Invalid Entry. Try again.\n");
+        }
+    else{
+        printf("Valid Entry\n\n");
+        correct = true;
+        }
+    }while(!correct);
+
+
+   }while(toupper(pick)=='Y');
 }
     
 
@@ -183,8 +167,9 @@ void printValidInt(int * check, int a, int b, char title[]){
        
         if (!input|| *check > b|| *check < a) 
         {
-            printf("Invalid entry.\nTry again!\n\n");
             getchar();
+            printf("Invalid entry.\nTry again!\n\n");
+
         }
         else{
             printf("Valid entry.\n\n");
@@ -202,8 +187,8 @@ void printValidDouble(double * check, double a, double b, char title[]){
        
         if (!input|| *check > b|| *check < a) 
         {
-            printf("Invalid entry.\nTry again!\n\n");
             getchar();
+            printf("Invalid entry.\nTry again!\n\n");
         }
         else{
             printf("Valid entry.\n\n");
