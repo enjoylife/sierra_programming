@@ -1,5 +1,5 @@
 /*------------------------------------------- 
-Program: Sporting Good Menu validation
+Program: Sporting Good Menu validation with functions
 Assignment for Week 5  
 Tested  with gcc on linux
 Author = Matthew Clemens
@@ -11,10 +11,9 @@ Date = 10/03/11
 #define NAME "Sierra Sporting Goods"
 
 double profit(double, double);
-double price(int, double);
-double cost(double, int);
-void printValidInt(int * check, int a , int b, char[]);
-void printValidDouble(double * check, double a, double b, char[]);
+double total(int, double);
+void getint(int * check, int a , int b, char[]);
+void getreal(double * check, double a, double b, char[]);
 
 //bool validString(char mesg[], char *ans[]);
 int menu(void);
@@ -66,8 +65,8 @@ int menu(void){
 }
    /* 
     //Business logic functions 
-    vprice = price(product_quantity , product_price);
-    vcost = cost(product_cost , product_quantity);
+    vprice = total(product_quantity , product_price);
+    vcost = total(product_cost , product_quantity);
     vprofit = profit(vprice, vcost);
 
    //   Total for all entries 
@@ -89,11 +88,11 @@ void addEntry(void){
    // char choice;
    do{
        /* User data entry*/
-    printValidInt(&product_number,1,9999, "product number");
-    printValidInt(&product_type,1,5, "product type");
-    printValidInt(&product_quantity,1,50, "product quantity");
-    printValidDouble(&product_cost,5.0,900.0,"product cost");
-    printValidDouble(&product_price,6.0,1000.0, "product price");
+    getint(&product_number,1,9999, "product number");
+    getint(&product_type,1,5, "product type");
+    getint(&product_quantity,1,50, "product quantity");
+    getreal(&product_cost,5.0,900.0,"product cost");
+    getreal(&product_price,6.0,1000.0, "product price");
 
     show(product_number, product_type, product_quantity, product_cost, product_price);
 
@@ -146,19 +145,15 @@ double profit(double tp, double tc){
     return total;
 }
 
-double price(int q , double p){
+double total(int q , double p){
     double total;
     total = q * p;
     return total;
 }
 
-double cost(double c, int q){
-    double total;
-    total = c * q;
-    return total;
-}
 
-void printValidInt(int * check, int a, int b, char title[]){
+
+void getint(int * check, int a, int b, char title[]){
     bool input = false;
     bool correct = false;
     printf("Enter the %s\n", title);
@@ -178,7 +173,7 @@ void printValidInt(int * check, int a, int b, char title[]){
     }while(!correct);
 }
 
-void printValidDouble(double * check, double a, double b, char title[]){
+void getreal(double * check, double a, double b, char title[]){
     bool input = false;
     bool correct = false;
     printf("Enter the %s\n", title);
