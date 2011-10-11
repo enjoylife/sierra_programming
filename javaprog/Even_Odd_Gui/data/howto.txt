@@ -1,0 +1,6 @@
+The Game is played by two players who on each turn 
+subtract 1, 2, or 3 pieces from a shared pile of 15,
+and they add that amount to their starting pile of 0.
+They do this until the pile reaches 0. At that point
+the winner is deemed by whoever has the EVEN
+number of pieces in their individual pile. 
