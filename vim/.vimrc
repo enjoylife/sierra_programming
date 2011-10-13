@@ -1,6 +1,6 @@
 set runtimepath+=$HOME/.vim/
 set runtimepath+=$HOME/.vim/after/ftplugins/html
-
+set number
 set nocompatible
 set nobackup
 set nowritebackup

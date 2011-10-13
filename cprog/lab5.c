@@ -18,7 +18,7 @@ void getreal(double * check, double a, double b, char[]);
 //bool validString(char mesg[], char *ans[]);
 int menu(void);
 int validInt(char  [], int , int);
-char validChar(char [], char);
+char getValidChar(char []);
 void add(void);
 void show(int, int, int, double, double);
 void showTotal(int, double, double, double);
@@ -82,10 +82,11 @@ int menu(void){
 
 void addEntry(void){
     int product_number, product_type, product_quantity;  
-    char pick;
-    bool input ,correct = false;
     double product_cost, product_price; 
+    char pick;
+    bool input;
    // char choice;
+   
    do{
        /* User data entry*/
     getint(&product_number,1,9999, "product number");
@@ -95,23 +96,12 @@ void addEntry(void){
     getreal(&product_price,6.0,1000.0, "product price");
 
     show(product_number, product_type, product_quantity, product_cost, product_price);
-
-    // char * inputstrings[8]={"y","Y","yes","Yes","n","N","No","no"};
-    //choice =validString("Would you like to add another? (type Y/N)\n", inputstrings);
-   printf("Would you like to add another? (type Y/N)\n");
-
     do{
-        input =scanf("%c%*c", &pick);
-            if (toupper(pick)!='N'&& toupper(pick)!='Y') {
-        printf("Invalid Entry. Try again.\n");
-        }
-    else{
-        printf("Valid Entry\n\n");
-        correct = true;
-        }
-    }while(!correct);
-
-
+   pick= toupper(getValidChar("Would you like to add another? (type Y/N)\n"));
+   getchar();
+    }while(!(pick=='Y'||pick=='N'));
+       
+   
    }while(toupper(pick)=='Y');
 }
 
@@ -156,8 +146,7 @@ double total(int q , double p){
 
 
 void getint(int * check, int a, int b, char title[]){
-    int input =1 ;
-    bool correct = false;
+    bool input, correct = false;
     printf("Please add the entry for %s,\nusing the range %d to %d\n", title, a, b);
     do{
     input= scanf("%d%*c", check);
@@ -188,14 +177,16 @@ void getreal(double * check, double a, double b, char title[]){
     printf("Please add the entry for %s,\nusing the range %lf to %lf\n", title, a, b);
     do{
     input = scanf("%lf%*c", check);
-    if ( *check > b|| *check < a) {
+    if (input &&( *check > b|| *check < a)) {
         printf("Invalid entry.\nTry again!\n\n");
         printf("The input range is between %.2lf .... to %.2lf\n",a,b);
+        *check=0;
     } 
     else if (!input) 
     {
         getchar();
         printf("Invalid entry.\nTry again!\n\n");
+        printf("The input range is between %.2lf .... to %.2lf\n",a,b);
     }
     else{
         printf("Valid entry.\n\n");
@@ -222,24 +213,23 @@ int validInt(char  mesg[], int low, int high){
     }while(!correct);
     return choice;
 }
-/*char validChar(char  mesg[], char choice){
+char getValidChar(char  mesg[]){
     char pick;
     bool input = false;
     bool correct = false;
     printf("%s\n",mesg);
     do{
-        input =scanf("%c%*c", &pick);
-            if (!input||toupper(pick)!=choice) {
-        printf("Thats not the right choice!\nTry again!\n");
-        getchar();
+        pick =getchar();
+        if (!(isalpha(pick))) {
+            printf("Thats not a character!\nTry a letter from a-Z!\n");
+            getchar();
         }
-    else{
-        printf("Valid Entry\n\n");
-        correct = true;
+        else{
+            correct = true;
         }
     }while(!correct);
     return pick;
-}*/
+}
 
 /*
 bool validString(char mesg[], char *ans[]){

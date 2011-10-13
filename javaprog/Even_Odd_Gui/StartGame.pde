@@ -1,12 +1,14 @@
+
 class StartGame
 {
   
+ 
  PFont font=loadFont("Ubuntu-Bold-48.vlw");   
 EvenOdd game = new EvenOdd();
  String title, author;
  String howto[];
  int turn;
- 
+  
  
  void start(){
    
@@ -34,6 +36,7 @@ EvenOdd game = new EvenOdd();
       text(this.howto[i],0,spacing,width,height);
       spacing+=20;
     }
+     
     print("end menu\n"); //Debug 
    }
     
