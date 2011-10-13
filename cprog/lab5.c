@@ -61,7 +61,8 @@ int menu(void){
         printf("2 = Report\n");
         printf("3 = Delete a record\n");
         printf("4 = Change a record\n"); printf("5 = Quit\n");
-        validInt("Choose the number for a menu option",1, 5);
+       choice= validInt("Choose the number for a menu option",1, 5);
+       return choice;
 }
    /* 
     //Business logic functions 
@@ -81,9 +82,8 @@ int menu(void){
 
 void addEntry(void){
     int product_number, product_type, product_quantity;  
-     char pick;
-    bool input = false;
-    bool correct = false;
+    char pick;
+    bool input ,correct = false;
     double product_cost, product_price; 
    // char choice;
    do{
@@ -96,9 +96,10 @@ void addEntry(void){
 
     show(product_number, product_type, product_quantity, product_cost, product_price);
 
-   // char * inputstrings[8]={"y","Y","yes","Yes","n","N","No","no"};
-     //choice =validString("Would you like to add another? (type Y/N)\n", inputstrings);
+    // char * inputstrings[8]={"y","Y","yes","Yes","n","N","No","no"};
+    //choice =validString("Would you like to add another? (type Y/N)\n", inputstrings);
    printf("Would you like to add another? (type Y/N)\n");
+
     do{
         input =scanf("%c%*c", &pick);
             if (toupper(pick)!='N'&& toupper(pick)!='Y') {
@@ -113,6 +114,7 @@ void addEntry(void){
 
    }while(toupper(pick)=='Y');
 }
+
     
 
 
@@ -154,18 +156,25 @@ double total(int q , double p){
 
 
 void getint(int * check, int a, int b, char title[]){
-    bool input = false;
+    int input =1 ;
     bool correct = false;
-    printf("Enter the %s\n", title);
+    printf("Please add the entry for %s,\nusing the range %d to %d\n", title, a, b);
     do{
     input= scanf("%d%*c", check);
-       
-        if (!input|| *check > b|| *check < a) 
-        {
-            getchar();
-            printf("Invalid entry.\nTry again!\n\n");
-
-        }
+    printf("check =%d\n",*check);
+    printf("input =%d\n",input);
+       if (input==1 &&(  *check > b || *check <a)) 
+       {
+            printf("Invalid entry.\nTry again!\n");
+            printf("The input range is between %d .... to %d\n", a, b);
+            *check=0;
+      } 
+       else if (input==0){
+           getchar();
+           printf("Wrong type of entry!\n");
+            printf("The input range is between %d .... to %d\n", a, b);
+            *check=0;
+       }
         else{
             printf("Valid entry.\n\n");
             correct = true;
@@ -176,19 +185,22 @@ void getint(int * check, int a, int b, char title[]){
 void getreal(double * check, double a, double b, char title[]){
     bool input = false;
     bool correct = false;
-    printf("Enter the %s\n", title);
+    printf("Please add the entry for %s,\nusing the range %lf to %lf\n", title, a, b);
     do{
     input = scanf("%lf%*c", check);
-       
-        if (!input|| *check > b|| *check < a) 
-        {
-            getchar();
-            printf("Invalid entry.\nTry again!\n\n");
-        }
-        else{
-            printf("Valid entry.\n\n");
-            correct = true;
-        }
+    if ( *check > b|| *check < a) {
+        printf("Invalid entry.\nTry again!\n\n");
+        printf("The input range is between %.2lf .... to %.2lf\n",a,b);
+    } 
+    else if (!input) 
+    {
+        getchar();
+        printf("Invalid entry.\nTry again!\n\n");
+    }
+    else{
+        printf("Valid entry.\n\n");
+        correct = true;
+    }
     }while(!correct);
 
 }
@@ -204,13 +216,13 @@ int validInt(char  mesg[], int low, int high){
                 getchar();
             }
     else{
-        printf("Valid Entry\n\n");
+        printf("%d, is a valid entry\n\n",choice);
         correct = true;
         }
     }while(!correct);
     return choice;
 }
-char validChar(char  mesg[], char choice){
+/*char validChar(char  mesg[], char choice){
     char pick;
     bool input = false;
     bool correct = false;
@@ -227,7 +239,8 @@ char validChar(char  mesg[], char choice){
         }
     }while(!correct);
     return pick;
-}
+}*/
+
 /*
 bool validString(char mesg[], char *ans[]){
     char pick[5];
