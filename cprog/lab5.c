@@ -150,8 +150,6 @@ void getint(int * check, int a, int b, char title[]){
     printf("Please add the entry for %s,\nusing the range %d to %d\n", title, a, b);
     do{
     input= scanf("%d%*c", check);
-    printf("check =%d\n",*check);
-    printf("input =%d\n",input);
        if (input==1 &&(  *check > b || *check <a)) 
        {
             printf("Invalid entry.\nTry again!\n");
@@ -174,7 +172,7 @@ void getint(int * check, int a, int b, char title[]){
 void getreal(double * check, double a, double b, char title[]){
     bool input = false;
     bool correct = false;
-    printf("Please add the entry for %s,\nusing the range %lf to %lf\n", title, a, b);
+    printf("Please add the entry for %s,\nusing the range %.2lf to %.2lf\n", title, a, b);
     do{
     input = scanf("%lf%*c", check);
     if (input &&( *check > b|| *check < a)) {
@@ -230,31 +228,24 @@ char getValidChar(char  mesg[]){
     }while(!correct);
     return pick;
 }
-
 /*
-bool validString(char mesg[], char *ans[]){
-    char pick[5];
-    bool input = false;
-    bool correct = false;
-    int size;
-    int i = 0;
-    printf("%s\n",mesg);
-    size = sizeof(ans);
-    do{
-       fgets(pick,sizeof(pick),stdin); 
-        for (i = 0; i < size; i++) {
-            if (strncmp(pick,ans[i],size)) {
+bool  validString(char*strout,char mesg[], char *ans[]){
+    bool input = false;        
+    bool correct = false;      
+    char answer[80];           
+    printf("%s\n",mesg);       
+    while(!correct){           
+    fgets(answer,80,stdin);
+        while(*ans){           
+            if(answer==*ans){  
+            return correct;
+            }
+        ans++;             
+
+        }
         printf("Thats not the right choice!\nTry again!\n");
-        getchar();
-        }
-    else{
-        printf("Valid Entry\n\n");
-        correct = true;
-        }
-    }
-    }while(!correct);
-    return correct;
-}
+    } 
+}   
 */
 
 
