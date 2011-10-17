@@ -26,6 +26,15 @@ def triarea(base,height):
     -6.0
     """
     return base*height/2.0
+
+def fullname(fname, lname):
+    """
+    Given a first name and a last name, return the full name 
+    in the format "lastname, firstname".
+    >>> fullname("Michael", "Jackson")
+    'Jackson', Michael'
+    """
+
 if __name__== "__main__":
     import doctest
     doctest.testmod(verbose=True, optionflags=doctest.NORMALIZE_WHITESPACE)
