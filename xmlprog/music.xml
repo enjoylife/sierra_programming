@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!--<!DOCTYPE music SYSTEM "music.dtd">-->
+
+
+<music
+    
+    xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+    >
+    <cd upc="_234252424758" genre="Other">
+        <title>The Resistance</title>
+        <artist>Muse</artist>
+        <publishingInfo>
+            <label>Atco-Mushroom-Helium 3</label>
+            <year>2009</year>
+        </publishingInfo>
+        <songInfo>
+            <numberOfSongs>11</numberOfSongs>
+            
+            <song>
+                <songTitle>Uprising</songTitle>
+                <songLength>5:03</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Resistance</songTitle>
+                <songLength>5:46</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Undisclosed Desires</songTitle>
+                <songLength>3:56</songLength>
+            </song>
+                
+            <song>
+                <songTitle>United States Of Eurasia</songTitle>
+                <songLength>5:47</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Guiding Light</songTitle>
+                <songLength>4:13</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Unatural Selection</songTitle>
+                <songLength>4:06</songLength>
+            </song>
+          
+            <song>
+                <songTitle>Mk Ultra</songTitle>
+                <songLength>5:38</songLength>
+            </song>
+           
+            <song>
+                <songTitle>I Belong to You</songTitle>
+                <songLength>5:38</songLength>
+            </song>
+           
+            <song>
+                <songTitle>Exogenesis: Symphony Part 1</songTitle>
+                <songLength>4:18</songLength>
+            </song>
+            <song>
+                <songTitle>Exogenesis: Symphony Part 2</songTitle>
+                <songLength>3:56</songLength>
+            </song>
+            <song>
+                <songTitle>Exogenesis: Symphony Part 3</songTitle>
+                <songLength>4:37</songLength>
+            </song>
+        </songInfo>
+    </cd>
+        
+        <cd upc="_254242424758" genre="Other">
+        <title>The Quilt</title>
+        <artist>Gym Class Heroes</artist>
+        <publishingInfo>
+            <label>Decaydance-Fueled by Ramen</label>
+            <year>2008</year>
+        </publishingInfo>
+        <songInfo>
+            <numberOfSongs>14</numberOfSongs>
+
+            <song>
+                <songTitle>Guilty As Charged</songTitle>
+                <songLength>4:00</songLength>
+            </song>
+            
+            <song>
+                <songTitle>Drnk Txt Rmeo</songTitle>
+                <songLength>3:25</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Peace Sign/Index Down</songTitle>
+                <songLength>4:01</songLength>
+            </song>
+           
+            <song>
+                <songTitle>Like Father, Like Son</songTitle>
+                <songLength>4:16</songLength>
+            </song>
+           
+            <song>
+                <songTitle>Blinded By The Sun</songTitle>
+                <songLength>3:00</songLength>
+            </song>
+           
+            <song>
+                <songTitle>Catch Me If You Can</songTitle>
+                <songLength>5:07</songLength>
+            </song>
+            
+            <song>
+                <songTitle>Cookie Jar</songTitle>
+                <songLength>3:35</songLength>
+            </song>
+
+            <song>
+                <songTitle>Live A Little</songTitle>
+                <songLength>3:43</songLength>
+            </song>
+
+            <song>
+                <songTitle>Don't Tell Me It's Over</songTitle>
+                <songLength>4:11</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Live Forever</songTitle>
+                <songLength>7:09</songLength>
+            </song>
+                
+            <song>
+                <songTitle>Kissing Ears</songTitle>
+                <songLength>3:42</songLength>
+            </song>
+            
+            <song>
+                <songTitle>Home</songTitle>
+                <songLength>5:09</songLength>
+            </song>
+                
+            <song>
+                <songTitle>No Place To Run</songTitle>
+                <songLength>3:45</songLength>
+            </song>
+            
+            <song>
+                <songTitle>Coming Clean</songTitle>
+                <songLength>3:02</songLength>
+            </song>
+        </songInfo>
+    </cd>
+</music>

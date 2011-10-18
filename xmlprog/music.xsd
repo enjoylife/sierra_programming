@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="music">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="cd"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cd">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="title"/>
+        <xs:element ref="artist"/>
+        <xs:element ref="publishingInfo"/>
+        <xs:element ref="songInfo"/>
+      </xs:sequence>
+      <xs:attribute name="upc" use="required" type="xs:ID"/>
+      <xs:attribute name="genre" default="Other">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="Classical"/>
+            <xs:enumeration value="Rock"/>
+            <xs:enumeration value="Jazz"/>
+            <xs:enumeration value="Country"/>
+            <xs:enumeration value="Hip-Hop"/>
+            <xs:enumeration value="Rap"/>
+            <xs:enumeration value="Other"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="title" type="xs:string"/>
+  <xs:element name="artist" type="xs:string"/>
+  <xs:element name="publishingInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="label"/>
+        <xs:element ref="year"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="label" type="xs:string"/>
+  <xs:element name="year" type="xs:string"/>
+  <xs:element name="songInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="numberOfSongs"/>
+        <xs:element maxOccurs="unbounded" ref="song"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="numberOfSongs" type="xs:string"/>
+  <xs:element name="song">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="songTitle"/>
+        <xs:element ref="songLength"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="songTitle" type="xs:string"/>
+  <xs:element name="songLength" type="xs:string"/>
+</xs:schema>
