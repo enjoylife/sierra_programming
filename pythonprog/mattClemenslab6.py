@@ -32,8 +32,62 @@ def fullname(fname, lname):
     Given a first name and a last name, return the full name 
     in the format "lastname, firstname".
     >>> fullname("Michael", "Jackson")
-    'Jackson', Michael'
+    'Jackson, Michael'
+    >>> fullname("Matt", "Clemens")
+    'Clemens, Matt'
+    >>> fullname("James", "Bond")
+    'Bond, James'
     """
+    return lname+", " +fname
+
+def shifter( n, k):
+    """
+    Given two numbers n and k return the rsult of the mapping function (n+k) mod 26
+    >>> shifter(12,15)
+    1
+    >>> shifter(18,13)
+    5
+    >>> shifter(24,10)
+    8
+    """
+    return (n+k)%26
+
+def encode(str):
+    """ Given a string of uppercase letters, return a list of numbers using
+    the mapping A->0, B>1, ....
+    >>> encode('ABC')
+    [0, 1, 2]
+    >>> encode('SIERRA')
+    [18, 8, 4, 17, 17, 0]
+    >>> encode('MATTHEW')
+    [12, 0, 19, 19, 7, 4, 22]
+    """
+    return[ord(c)-65 for c in list(str)]
+
+def decode(num):
+    """
+    Given a list of numbers where A=0, B=1, .... return the corresponding string
+
+    >>> decode([0, 1, 2])
+    'ABC'
+    >>> decode([18, 8, 4, 17, 17, 0])
+    'SIERRA'
+    >>> decode([12, 0, 19, 19, 7, 4, 22])
+    'MATTHEW'
+    """
+    return "".join(chr(n+65) for n in num)
+
+def shiftcipher(str, k):
+    """
+    Given a string and k, return the shifter string
+    >>> shiftcipher('SIERRA', 15)
+    'HXTGGP'
+    >>> shiftcipher("MATTHEW", 10)
+    'WKDDROG'
+
+    """
+    return decode([shifter(x,k) for x in encode(str)])
+
 
 if __name__== "__main__":
     import doctest
