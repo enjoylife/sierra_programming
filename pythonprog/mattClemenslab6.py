@@ -88,6 +88,26 @@ def shiftcipher(str, k):
     """
     return decode([shifter(x,k) for x in encode(str)])
 
+def linear(m, a, k):
+    """
+    Given three numbers use them in the formula (m*a+k) mod 26
+    >>> linear(4,7,12)
+    14
+    >>> linear(30,8,11)
+    17
+    """
+    return (m*a+k)%26
+
+def linearcipher(str, m, k):
+    """
+    Given a string encode it using the coefficients m and k
+    >>> linearcipher('matthew', 7, 11)
+    [7, 1, 4, 4, 24, 3, 25]
+    >>> linearcipher("abcdefghijklmnop", 7, 11)
+    [1, 8, 15, 22, 3, 10, 17, 24, 5, 12, 19, 0, 7, 14, 21, 2]
+    """
+    a=encode(str)
+    return [linear(m,letters,k)for letters in a]
 
 if __name__== "__main__":
     import doctest
