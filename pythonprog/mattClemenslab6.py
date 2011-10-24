@@ -102,12 +102,12 @@ def linearcipher(str, m, k):
     """
     Given a string encode it using the coefficients m and k
     >>> linearcipher('matthew', 7, 11)
-    [7, 1, 4, 4, 24, 3, 25]
+    'HBEEYDZ'
     >>> linearcipher("abcdefghijklmnop", 7, 11)
-    [1, 8, 15, 22, 3, 10, 17, 24, 5, 12, 19, 0, 7, 14, 21, 2]
+    'BIPWDKRYFMTAHOVC'
     """
     a=encode(str)
-    return [linear(m,letters,k)for letters in a]
+    return decode([linear(m,letters,k)for letters in a])
 
 if __name__== "__main__":
     import doctest
