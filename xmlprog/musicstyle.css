@@ -1,0 +1,91 @@
+music:before
+{
+    margin-left:auto;
+    margin-right:auto;
+    color:green;
+    font-size: 24pt;
+    text-align: center;
+    padding-left:auto;
+    content:"Music Collection";   
+    
+
+
+}
+music{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    }
+
+
+cd{
+    margin-left: auto;
+    display:block;
+    margin-right: auto;
+    width: 300px;
+    border: thick double blue;
+
+    }
+
+title{
+    display:block;
+    
+    clear:both;
+ margin-left: auto;
+    margin-right: auto;
+
+    color: red;
+    font-style: italic;
+    font-size: 20pt;
+    text-align: center;
+}
+
+artist{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:18pt;
+    text-align:center;
+    margin-bottom:5px;
+}
+
+publishingInfo{
+    display:block;
+ margin-left: auto;
+    margin-right: auto;
+    clear:both;
+    margin-bottom:5px;
+    color: green;
+    font-size: 14pt;
+    text-align:right;
+}
+year{
+    display:block;
+}
+
+song{
+    border:none;
+}
+
+numberOfSongs{
+    margin-bottom:5px;
+    display:block;
+    font-size:14pt;
+    text-align:left;
+}
+numberOfSongs:after
+{
+    content:" Song Titles:";
+}
+songTitle{
+    display:block;
+    text-align:left;
+    font-style: italic;
+    font-size: 12pt;
+}
+
+songLength{
+    display:none;
+}
+
