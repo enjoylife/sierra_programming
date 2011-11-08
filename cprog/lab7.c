@@ -14,7 +14,7 @@ double profit(double, double);
 double total(int, double);
 void getint(int * check, int a , int b, char[]);
 void getreal(double * check, double a, double b, char[]);
-void show_costs(double *,char[][], int);
+void show_costs(double *,char[], int);
 void init_costs(double *, int);
 //bool validString(char mesg[], char *ans[]);
 int menu(void);
@@ -95,7 +95,7 @@ void addEntry(void){
     show(product_number, product_type, product_quantity, product_cost, product_price, description);
 
     //NEW PART FOR LAB 6****************
-    show_costs(cost_array, 5);
+    show_costs(cost_array,description, 5);
     do{
    pick= toupper(getValidChar("Would you like to add another? (type Y/N)\n"));
    getchar();
@@ -115,7 +115,7 @@ void init_costs(double *array, int size){
         array[i] = 0;
     }
 }
-void show_costs(double *array,char descrip[][], int size){
+void show_costs(double *array,char **descrip, int size){
    int space=40; 
    int i;
     printf("Type %s%s%s %s\n","         ","Depart.","         ","Costs");
@@ -125,7 +125,7 @@ void show_costs(double *array,char descrip[][], int size){
     printf("\n");
     for (i = 0; i < size; i++) {
         double cost = array[i];
-        printf("%d%s%s $%.2lf\n", i+1,"      ",descrip[i] cost);
+        printf("%d%s%s $%.2lf\n", i+1,"      ",descrip[i], cost);
     }
 }
 
