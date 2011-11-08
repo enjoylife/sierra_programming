@@ -14,7 +14,7 @@ double profit(double, double);
 double total(int, double);
 void getint(int * check, int a , int b, char[]);
 void getreal(double * check, double a, double b, char[]);
-void show_costs(double *,char[], int);
+void show_costs(double *,char * depart[], int);
 void init_costs(double *, int);
 //bool validString(char mesg[], char *ans[]);
 int menu(void);
@@ -115,7 +115,7 @@ void init_costs(double *array, int size){
         array[i] = 0;
     }
 }
-void show_costs(double *array,char **descrip, int size){
+void show_costs(double *array,char *descrip[], int size){
    int space=40; 
    int i;
     printf("Type %s%s%s %s\n","         ","Depart.","         ","Costs");
