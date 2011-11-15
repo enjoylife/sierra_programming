@@ -32,7 +32,7 @@ int main(void)
     
     do{
         //Display the realtors names
-    printf("Enter the corrasponding number for these realtors names\n");
+    printf("\n\nHere are the numbers for the realtors names\n");
         for (i = 0; i <5; i++) {
             printf("%d. %s\n",i+1, names[i]);
         }
@@ -43,7 +43,7 @@ int main(void)
     name_pick=name_pick-1;
     
     //Loop for the sales amount
-    getreal(&sales_amount, 0, 1," 1 Employee's sale");
+    getreal(&sales_amount, 0, 1,"only one sale \nfor the previously picked employee");
 
 
     // update 
@@ -93,7 +93,7 @@ void average(double * sales, double *total, double *average)
     int i;
     *total=0;
     for (i = 0; i < 5; i++) {
-        *total+=*(sales+i);
+        (*total)+=*(sales+i);
     }
     *average = *total/5;
 }
@@ -109,7 +109,7 @@ void average(double * sales, double *total, double *average)
 void getreal(double * check, double a, bool or_eql, char title[]){
     bool input = false;
     bool correct = false;
-    printf("Please add the entry for %s,\nusing at least %.2lf\n", title, a);
+    printf("Please enter the number \nfor %s,\nusing at least %.2lf\n", title, a);
 
     do{
     input = scanf("%lf%*c", check);
@@ -144,7 +144,7 @@ void getreal(double * check, double a, bool or_eql, char title[]){
  * validates agasint the check */
 void getint(int * check, int a, int b, char title[]){
     bool input, correct = false;
-    printf("Please add the entry for %s,\nusing the range %d to %d\n", title, a, b);
+    printf("\nPlease choose the entry \nfor %s,\nusing the range %d to %d\n", title, a, b);
     do{
     input= scanf("%d%*c", check);
        if (input==1 &&(  *check > b || *check <a)) 
