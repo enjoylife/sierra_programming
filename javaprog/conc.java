@@ -1,37 +1,30 @@
 class Conc
 {
-   private int p1score, p2score;
+   private int [] scores;
    private int turn;
    private int cardsRemain;    // 0-6
    private int cardsClicked;  // 0, 1, or 2
-   private int c1, c2, c3, c4, c5, c6;   // 1-3 if in play, negative if face up, zero if not in play
+   private int []cards;   // 1-3 if in play, negative if face up, zero if not in play
    private int first, second;
+   private int NUMCARDS=6;
+   private int NUMPLAYERS=2;
     
     public Conc()
     {
-        this.p1score= 0;
-        this.p2score= 0;
+        //Add 1 to score to keep sanity when array indexing
+        this.scores = new int[this.NUMPLAYERS+1];
+        this.cards = new int[this.NUMCARDS];
         this.turn= 1;
         this.cardsRemain= 6;
         this.cardsClicked= 0;
-        this.c1= 1;
-        this.c2= 1;
-        this.c3= 2;
-        this.c4= 3;
-        this.c5= 2;
-        this.c6= 3;
         this.first= 0;
         this.second= 0;
     }
-    public int getP1Score()
+    public int getScore(int player)
     {
-        return this.p1score;
+        return this.scores[player];
     }
     
-    public int getP2Score()
-    {
-        return this.p2score;
-    }
     public int getCardsRemain()
     {
         return this.cardsRemain;
@@ -63,15 +56,14 @@ class Conc
      * c2.whoWon() -> 2
      */
     int whoWon(){
-        if (!isGameOver()||(getP1Score()==getP2Score())){
+        if (!isGameOver()){
             return 0;
         }
-        else if(getP1Score()>getP2Score()){
-            return 1;
-        }
-        else{
-            return 2;
-        }
+        else {
+            highScores= scores.sort;
+            if (highScores[0]>highScores[1]){
+                return 
+                    
     }
     
     /**
@@ -87,6 +79,7 @@ class Conc
             return false;
         }
         else {
+
             return true;
         }
     }
