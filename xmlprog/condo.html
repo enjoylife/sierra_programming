@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Condominium List</title>
+        <script type="text/javascript">
+             var xmlDoc;
+             function loadXMLDoc() {
+                  // XML loader for IE
+                  if (window.ActiveXObject) {
+                      xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+                      xmlDoc.load("week3.xml");
+                     printCondos();
+                }
+                // XML loader for other browsers
+               else {
+                    xmlDoc = document.implementation.createDocument("", "", null);
+                    xmlDoc.load("week3.xml");
+                    xmlDoc.onload = printCondos;
+              }
+          }
+  
+          function printCondos() {
+                var cdNodes = xmlDoc.getElementsByTagName("cd");
+                var titleNodes = xmlDoc.getElementsByTagName("title");
+                var pubNodes = xmlDoc.getElementsByTagName("publishingInfo");
+                var songNodes = xmlDoc.getElementsByTagName("songInfo");
+
+
+                for (var i = 0; i < cdNodes.length; i++) {
+                //print the title of each cd
+                    document.write("<h1>"+cdNodes[i].childNodes[0].nodeValue+"</h1>");
+                    //print the artist values
+                    document.write("<p>"+cdNodes[i].childNodes[1].nodeValue+"</p>");
+                    //print the year and the labels
+                    document.write("<p>"+pubNodes[i].childNodes[0].nodeValue+"</p>");
+                    document.write("<p>"+pubNodes[i].childNodes[1].nodeValue+"</p>");
+
+                    document.write("<p>"+pubNodes[i].childNodes[1].nodeValue+"</p>");
+
+                    //Start at 1 because first node is the number of songs
+                    //and I dont need to print that 
+                    for (var i = 1; i < songNodes.length; i++) {
+                    //print song title and song length
+                        document.write("<p>"+songNodes[i].childNodes[1].nodeValue+"</p>");
+                        }
+                    }
+               }
+	  document.close();
+           }
+     </script>
+   </head>
+<body onload="loadXMLDoc()">
+</body>
+</html>
+
+
