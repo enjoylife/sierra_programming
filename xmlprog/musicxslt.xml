@@ -6,14 +6,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <html>
   <body>
   <h1>Music Collection</h1>
-  <xsl:for-each select="cd">
+  <xsl:for-each select="//cd">
   	<pre><xsl:value-of select="@upc"/></pre>
   	<pre><xsl:value-of select="@genre"/></pre>
-  <h2><xsl:value-of select="title"/></h2>
-  <p><xsl:value-of select="artists"/></p>
-  <p><xsl:value-of select="label"/></p>
-  <p><xsl:value-of select="year"/></p>
-  <p><xsl:value-of select="songInfo/numberOfSongs"/></p>
+  <h2><xsl:value-of select="//title"/></h2>
+  <p><xsl:value-of select="//artists"/></p>
+  <p><xsl:value-of select="//label"/></p>
+  <p><xsl:value-of select="//year"/></p>
+  <p><xsl:value-of select="//songInfo/numberOfSongs"/></p>
   <ul>
   <xsl:for-each select="songInfo/song">
   <li><xsl:value-of select="songTitle"/></li>
