@@ -118,15 +118,19 @@ class Conc
            return test;
         }
     }
-    /** pickCard : int -> None
+    /** pickCard : Card -> None
      * Given a card value, change that cards status to picked 
      */
     void pickCard(Card card){
         int index=getCardIndex(card.getValue());
         cards[index].setStatus(-1);
-     }    
-    /** Complete a players turn */
-     void turn(int cardv, int playerid){
+     }
+     
+     
+    /**turn ->: int, int -> None
+     * Give a card value and player id, pick a card to switch 
+     * Complete a players turn 
+     void turn(int cardid, int playerid){
          int index = getCardIndex(cardv);
          if (isValidMove(cards[index])&&this.turn==playerid){
              this.pickCard(cards[index]);
@@ -136,9 +140,8 @@ class Conc
         
             }
         }
-         
-    
-    
+         */
+   
   
     /** Poor implementation of a shuffle */
     void shuffle(){
