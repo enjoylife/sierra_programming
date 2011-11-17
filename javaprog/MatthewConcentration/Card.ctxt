@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=id
+comment0.target=Card(int)
+comment1.params=
+comment1.target=int\ getValue()
+comment2.params=v
+comment2.target=void\ setValue(int)
+comment3.params=
+comment3.target=int\ getId()
+comment4.params=id
+comment4.target=void\ setId(int)
+comment5.params=s
+comment5.target=void\ setStatus(int)
+comment6.params=
+comment6.target=int\ getStatus()
+numComments=7

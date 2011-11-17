@@ -1,34 +1,48 @@
+import java.util.Arrays;
+
 class Conc
 {
-   private int [] scores;
+   private Player [] players;
    private int turn;
    private int cardsRemain;    // 0-6
    private int cardsClicked;  // 0, 1, or 2
-   private int []cards;   // 1-3 if in play, negative if face up, zero if not in play
+   private Card []cards;   // card.id 1-3 if in play, negative if face up, zero if not in play
    private int first, second;
    private int NUMCARDS=6;
    private int NUMPLAYERS=2;
+   
     
     public Conc()
     {
-        //Add 1 to score to keep sanity when array indexing
-        this.scores = new int[this.NUMPLAYERS+1];
-        this.cards = new int[this.NUMCARDS];
+        this.players = new Player[this.NUMPLAYERS];
+        for (int i=0;i<this.players.length ;i++ )
+        {
+            this.players[i] = new Player((i+1));
+        }
+
+        this.cards = new Card[this.NUMCARDS];
+        this.initalizeCards();
         this.turn= 1;
-        this.cardsRemain= 6;
+        this.cardsRemain= NUMCARDS;
         this.cardsClicked= 0;
-        this.first= 0;
-        this.second= 0;
     }
-    public int getScore(int player)
+    public int getScore(Player p)
     {
-        return this.scores[player];
+        return p.getScore();
     }
     
     public int getCardsRemain()
     {
-        return this.cardsRemain;
+        int total=0;
+         for (int i=0;i<this.cards.length ;i++ ){
+             if(this.cards[i].getStatus()<0){
+                 total+=this.cards[i].getStatus();
+             }
+         }
+         return NUMCARDS-total;
     }
+
+
     /**
      * isGameOver : none -> boolean
      * Return whether the game is over or not.
@@ -40,47 +54,70 @@ class Conc
      */
     boolean isGameOver()
     {
-       return(getCardsRemain() ? false  : true);
+        if(getCardsRemain()>0)
+            return false;
+        else return true;
     }
     /**
      * whoWon : none -> int
      * Return the player number of the winner or
      * zero if the game is not over yet.
-     * Conc c = new Conc();
-     * c.getP2Score()->0;
-     * c.getP1Score()->3;
-     * c.whoWon(); -> 1
-     * Con c2 = new Conc();
-     * c2.getP2Score()->2;
-     * c2.getP1Score()->1;
-     * c2.whoWon() -> 2
      */
     int whoWon(){
+        Player winner = new Player(0);
         if (!isGameOver()){
             return 0;
         }
         else {
-            highScores= scores.sort;
-            if (highScores[0]>highScores[1]){
-                return 
+            Arrays.sort(this.players);
+            winner = this.players[0];
+            return winner.getId();
+        }
                     
     }
     
     /**
      * isValidMove : int -> boolean
-     * Given the card number (1-6), return whether
+     * Given the card number, return whether
      * it is valid to turn that card over.
-     * Conc c = new Conc();
-     *
-     * c.isValidMove(2) -> true
      */
-    boolean isValidMove(cardchoice){
-        if(isGameOver()||(!(whoWon()==0))){
+    boolean isValidMove(int cardstatus){
+        boolean test =false;
+        if(isGameOver()){
             return false;
         }
         else {
-
-            return true;
+           switch (cardstatus){
+            case 1: test = true; break;
+            case -1: test = false; break;
+           }
+           return test;
         }
     }
+
+    void initalizeCards()
+    {
+        for (int i=0;i<this.cards.length ;i++ ){
+            this.cards[i] = new Card((i/2+1));
+        }
     }
+
+    void shuffle(){
+
+        for(int i =0; i<NUMCARDS*3; i++){
+        int cindex = (int)(Math.random()*NUMCARDS);
+        int cindex2 = (int)(Math.random()*NUMCARDS);
+         int cardnum=cards[cindex].getId();
+         int cardnum2=cards[cindex2].getId();
+         cards[cindex].setId(cardnum2);
+         cards[cindex2].setId(cardnum);
+        }
+
+
+    }
+
+    int getWhoseTurn(){
+        return this.turn;
+    }
+}
+

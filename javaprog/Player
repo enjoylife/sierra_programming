@@ -1,0 +1,29 @@
+    public class Player implements Comparable
+    {
+        private String name, description;
+        private int id;
+        private int score;
+
+        public Player(int id)
+        {
+            this.id = id;
+        }
+        public int compareTo(Object o)
+        {
+            Player p = (Player) o;
+            return this.score.compareTo(p.score);
+        }
+        public int getScore()
+        {
+            return this.score;
+        }
+        public int getId()
+        {
+            return this.id;
+        }
+        public String getName()
+        {
+            return this.name;
+        }
+
+    }
