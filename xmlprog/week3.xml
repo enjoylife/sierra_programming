@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE music SYSTEM "music.dtd">
-<?xml-stylesheet type="text/css" href="musicstyle.css"?>
 
+<?xml-stylesheet type="text/xsl" href="music.xsl"?>
 
 <music>
     <cd upc="_234252424758" genre="Other">
