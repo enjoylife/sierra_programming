@@ -8,6 +8,7 @@ public class Card
     public Card(int id)
     {
         this.cardId = id;
+        this.status = 1;
     }
     public int getValue(){
         return this.cardValue;

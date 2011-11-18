@@ -7,10 +7,6 @@ public class TestConc
         t.checkExpect(c.getCardsRemain(),6);
     }
     
-    void testWhoseTurn(Tester t){
-        Conc c = new Conc(2,6);
-        t.checkExpect(c.getWhoseTurn(),1);
-    }
     void testGameOver(Tester t){
         Conc c = new Conc(2,6);
         t.checkExpect(c.isGameOver(),false);
@@ -21,17 +17,18 @@ public class TestConc
     }
     void testCardIndex(Tester t){
         Conc c = new Conc(2,6);
-        t.checkExpect(c.getCardIndex(2), 2);
+        t.checkExpect(c.getCardIndex(2), 3);
         t.checkExpect(c.getCardIndex(5), -1);
         Conc d = new Conc(2,20);
-        t.checkExpect(d.getCardIndex(10),18);
-        t.checkExpect(d.getCardIndex(6),10);
+        t.checkExpect(d.getCardIndex(10),19);
+        t.checkExpect(d.getCardIndex(6),11);
     }
-    void testPickCard(Tester t){
+    
+    void testGame(Tester t){
         Conc c = new Conc(2,6);
-        int index= c.getCardIndex(3);
-        c.pickCard(c.cards[index]);
-        t.checkExpect(c.cards[index].getStatus(), -1);
+        t.checkExpect(c.move(0,1),0);
+        t.checkExpect(c.move(0,1),-1);
+        t.checkExpect(c.move(1,1),1);
     }
     
     

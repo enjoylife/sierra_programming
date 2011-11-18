@@ -2,11 +2,14 @@ import java.util.Arrays;
 
 class Conc
 {
-   public Player [] players;
+   private Player [] players;
    private int turn;
-   private int cardsRemain;    // 0-6
-   private int cardsClicked;  // 0, 1, or 2
-   public Card []cards;   // card.id 1-3 if in play, negative if face up, zero if not in play
+   
+   private int cardsClicked;
+   private int checkCard1, checkCard2;// 0, 1, or 2
+   private int cardsRemain;
+   public Card []cards;
+   // card.id 1-3 if in play, negative if face up, zero if not in play
    private int NUMCARDS;
    private int NUMPLAYERS;
    
@@ -32,10 +35,16 @@ class Conc
     {
         for (int i=0;i<this.cards.length ;i++ ){
             this.cards[i] = new Card(i);
-            this.cards[i].setValue(((i+1)/2)+1);
+            this.cards[i].setValue((i/2)+1);
         }
         
     }
+    void cards(){
+        for(int i=0;i<this.cards.length ;i++ ){
+            System.out.println(this.cards[i].getValue());
+        }
+    }
+            
     
   
    
@@ -48,7 +57,8 @@ class Conc
         }
         return index;     
         } 
-    /**Sum all cards status var and sub that from NUMCARDS */ 
+        
+    /**Sum all cards that have a negative status (AKA their out of play) */ 
     public int getCardsRemain()
     {
         int total=0;
@@ -59,15 +69,7 @@ class Conc
          }
          return NUMCARDS-total;
     }
-     /** Return the player id of whos turn is up */
-    int getWhoseTurn(){
-        for(int i=0; i<this.players.length; i++){
-            if(players[i].getId()==this.turn){
-                return players[i].getId();
-            }
-        }
-        return -1;
-    }
+    
     
     
 
@@ -101,47 +103,57 @@ class Conc
     }
     
     /**
-     * isValidMove : Card -> boolean
+     * isValidMove : int -> boolean
      * Given the card , return whether
-     * it is valid to turn that card over.
+     * it is valid to turn that card over. True if it is, false otherwise
      */
-    boolean isValidMove(Card card){
+    boolean isValidMove(int cardIndex){
         boolean test =false;
-        if(isGameOver()){
+        if(isGameOver()&& cardsClicked>1){
             return false;
         }
         else {
-           switch (card.getStatus()){
+            
+           switch (cards[cardIndex].getStatus()){
             case 1: test = true; break;
             case -1: test = false; break;
            }
            return test;
         }
     }
-    /** pickCard : Card -> None
-     * Given a card value, change that cards status to picked 
-     */
-    void pickCard(Card card){
-        int index=getCardIndex(card.getValue());
-        cards[index].setStatus(-1);
-     }
-     
-     
-    /**turn ->: int, int -> None
-     * Give a card value and player id, pick a card to switch 
-     * Complete a players turn 
-     void turn(int cardid, int playerid){
-         int index = getCardIndex(cardv);
-         if (isValidMove(cards[index])&&this.turn==playerid){
-             this.pickCard(cards[index]);
-            
-             
-             
-        
-            }
+    
+  /** Move ->int , int -> int
+   * Given an index to both a player and a card, turn the card status 
+   * to out of play and increase the cards clicked and return 0 if player needs to go again, 1 if cards
+   *  match, or 2 if they dont match
+   */
+  public int move( int card, int player){
+      /** Check first if this is even legal */
+      if(isValidMove(card)&&(this.turn==player)){
+          /** -1 to signify picked or out of play */
+          if (this.cardsClicked ==0){
+          cards[card].setStatus(-1);
+          this.cardsClicked++;
+          this.checkCard1= cards[card].getValue();
+          return 0;
         }
-         */
-   
+        /** Second turn so need to check */
+        else if( this.cardsClicked == 1){
+            this.cardsClicked = 0;
+            this.checkCard2= cards[card].getValue();
+            this.turn++;
+            if(this.checkCard2==this.checkCard1){
+                return 1;
+            }
+            else {
+                return 2;
+            }
+        }       
+    }
+    return -1;
+   }
+     
+        
   
     /** Poor implementation of a shuffle */
     void shuffle(){
@@ -159,8 +171,7 @@ class Conc
     
    
    
-        
-            
+                  
    
     
     
