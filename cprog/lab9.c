@@ -77,7 +77,9 @@ void addEntry(void){
     double cost_array[5];
     char description[30];
     
-    //NEW VARIABLES FOR LAB 9
+    //NEW VARIABLES FOR LAB 9 
+    //first two intials are for the name, last two for eith upper or lower limit
+    // ex pn_ul " product number upper limit
     int pn_ll, pn_ul, pt_ll, pt_ul, pq_ll, pq_ul;
     double pc_ll, pc_ul, pp_ll, pp_ul;
     FILE *f_limits;
@@ -94,23 +96,23 @@ void addEntry(void){
         exit(1);
     }
     fscanf(f_limits,"%d %d %d %d %d %d %lf %lf %lf %lf",
-            &pn_ll, &pn_ul,
-            &pt_ll, &pt_ul,
-            &pq_ll, &pq_ul,
-            &pc_ll, &pc_ul,
-            &pp_ll, &pp_ul);
+            &pn_ll, &pn_ul,//product number
+            &pt_ll, &pt_ul,//product type
+            &pq_ll, &pq_ul,//product quantity
+            &pc_ll, &pc_ul,//product cost
+            &pp_ll, &pp_ul);//product price
 
     //NEW PART FOR LAB 6****************
     init_costs(cost_array, 5);
    do{
        /* User data entry*/
-    getint(&product_number,1,9999, "product number");
-    getint(&product_type,1,5, "product type");
+    getint(&product_number,pn_ll,pn_ul, "product number");
+    getint(&product_type,pt_ll,pt_ul, "product type");
     getstring(description);
     strcase(description);
-    getint(&product_quantity,1,50, "product quantity");
-    getreal(&product_cost,5.0,900.0,"product cost");
-    getreal(&product_price,6.0,1000.0, "product price");
+    getint(&product_quantity,pq_ll,pq_ul, "product quantity");
+    getreal(&product_cost,pc_ll,pc_ul,"product cost");
+    getreal(&product_price,pp_ll,pp_ul, "product price");
     //NEW PART FOR LAB 8****************
     *(cost_array+(product_type-1))+=product_cost;
 
