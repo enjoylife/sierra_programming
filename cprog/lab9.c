@@ -1,6 +1,6 @@
 /*------------------------------------------- 
 Program: Sporting Good Menu validation with functions and arrays
-Assignment for Week 8  
+Assignment for Week 10  
 Tested  with gcc on linux
 Author = Matthew Clemens
 Date = 10/03/11
@@ -25,76 +25,76 @@ void add(void);
 void show(int, int, int, double, double,char []);
 void showTotal(int, double, double, double);
 void addEntry(void);
-//New Functions
-//For lab 7/8
 void getstring(char[]);
 void strcase(char[]);
 char *departments[5]={"Camping", "Tennis", "Golf", "Snow sports", "Water sports"};
+void report(void);
+
+
+typedef struct{
+    int product_number, product_type, product_quantity;
+    char description[100];
+    double product_cost, product_price;
+}storeRecord;
+
 
 int main(void)
 {
-    
     int choice;
     bool more=true;
-
     do{
     choice = menu(); 
     switch(choice)
     {
-        case 1: addEntry();
-                break;
-        case 2:
-        case 3:
-        case 4:
-        case 5: more=false;
-                printf("GoodBye\n");
-                break;
-        default: printf("GoodBye\n");
-                 more =false;
-                 break;
+    case 1: addEntry();
+            break;
+    case 2:report();
+           break;
+    case 3:
+    case 4:
+    case 5: more=false;
+            printf("GoodBye\n");
+            break;
+    default: printf("GoodBye\n");
+             more =false;
+             break;
     }
-
-   
     }while(more);
-
-       
-
 return 0;
 } 
 
 int menu(void){
    int choice = 0; 
-        printf("%s\n",NAME);
-        printf("1 = Add a record\n");
-        printf("2 = Report\n");
-        printf("3 = Delete a record\n");
-        printf("4 = Change a record\n"); printf("5 = Quit\n");
-       choice= validInt("Choose the number for a menu option",1, 5);
-       return choice;
+    printf("%s\n",NAME);
+    printf("1 = Add a record\n");
+    printf("2 = Report\n");
+    printf("3 = Delete a record\n");
+    printf("4 = Change a record\n"); printf("5 = Quit\n");
+   choice= validInt("Choose the number for a menu option",1, 5);
+   return choice;
 }
+
+
 void addEntry(void){
     //Arrays dont leave this function
     double cost_array[5];
     char description[30];
+    //NEW VARIABLES FOR LAB 10 
+    storeRecord record;
+    FILE *rec;
     
-    //NEW VARIABLES FOR LAB 9 
     //first two intials are for the name, last two for eith upper or lower limit
     // ex pn_ul " product number upper limit
     int pn_ll, pn_ul, pt_ll, pt_ul, pq_ll, pq_ul;
     double pc_ll, pc_ul, pp_ll, pp_ul;
     FILE *f_limits;
 
-    int product_number, product_type, product_quantity;  
-    double product_cost, product_price; 
     char pick;
     bool input;
+
     //NEW PART FOR LAB 9
     f_limits = fopen("limits.txt","r");
-    if (f_limits==NULL)
-    {
-        printf("File Does Not Exist");
-        exit(1);
-    }
+    if (f_limits==NULL){ printf("File Does Not Exist"); exit(1);}
     fscanf(f_limits,"%d %d %d %d %d %d %lf %lf %lf %lf",
             &pn_ll, &pn_ul,//product number
             &pt_ll, &pt_ul,//product type
@@ -102,38 +102,88 @@ void addEntry(void){
             &pc_ll, &pc_ul,//product cost
             &pp_ll, &pp_ul);//product price
 
-    //NEW PART FOR LAB 6****************
+/*********************************/
+/*  NEW FOR LAB 10 */
+/*********************************/
+    rec = fopen("sportstorerec.db", "ab");
+    if (rec==NULL) {fputs ("File error",stderr); exit (1);}
+
     init_costs(cost_array, 5);
    do{
        /* User data entry*/
-    getint(&product_number,pn_ll,pn_ul, "product number");
-    getint(&product_type,pt_ll,pt_ul, "product type");
-    getstring(description);
-    strcase(description);
-    getint(&product_quantity,pq_ll,pq_ul, "product quantity");
-    getreal(&product_cost,pc_ll,pc_ul,"product cost");
-    getreal(&product_price,pp_ll,pp_ul, "product price");
-    //NEW PART FOR LAB 8****************
-    *(cost_array+(product_type-1))+=product_cost;
+    getint(&record.product_number,pn_ll,pn_ul, "product number");
+    getint(&record.product_type,pt_ll,pt_ul, "product type");
+    getstring(record.description);
+    strcase(record.description);
+    getint(&record.product_quantity,pq_ll,pq_ul, "product quantity");
+    getreal(&record.product_cost,pc_ll,pc_ul,"product cost");
+    getreal(&record.product_price,pp_ll,pp_ul, "product price");
+    
+    // Add this entries cost to the cost array for end of run print out
+    *(cost_array+(record.product_type-1))+=record.product_cost;
 
-    show(product_number, product_type, product_quantity, product_cost, product_price, description);
+    // Displays this entry only
+    show(record.product_number, record.product_type, record.product_quantity,
+            record.product_cost, record.product_price, record.description);
 
-    //NEW PART FOR LAB 8****************
+    // Displays the run of entries 
     show_costs(cost_array,departments, 5);
+
+    //NEW FOR LAB 10
+    //writes this record to the file
+    fwrite (&record, 1 , sizeof(record), rec);
+
     do{
    pick= toupper(getValidChar("Would you like to add another? (type Y/N)\n"));
    getchar();
     }while(!(pick=='Y'||pick=='N'));
        
+    //Cant forget this !
+    fclose(rec);
    
    }while(toupper(pick)=='Y');
 
 
 
 }
-//******************NEW FUNCTIONS*********************
-//****************************************************
-//WITH POINT SYNTAX
+
+/*********************************/
+/*********************************/
+/*  NEW FOR LAB 10 */
+/*********************************/
+/*********************************/
+void report()
+{
+    double single_total_price, single_total_cost, single_profit, total_profit;
+    storeRecord record;
+    FILE *rec;
+    total_profit = 0;
+
+    rec = fopen("sportstorerec.db", "rb");
+    if (rec==NULL) {fputs ("File error",stderr); exit (1);}
+
+    printf("%s%7s%15s%5s%7s%9s%10s\n", "prod#", "Type", "Description", "Qty", "Cost", 
+            "Price", "Profit");
+    printf("----------------------------------------------------------\n");
+    while(fread(&record, sizeof(record), 1, rec)==1){
+
+        //Calculate all the business logic for the printout
+        single_total_price =total(record.product_quantity, record.product_price);
+        single_total_cost =total(record.product_quantity, record.product_cost);
+        single_profit = profit(single_total_price, single_total_cost);
+        //Running total
+        total_profit+= single_profit;
+
+
+    printf("%d %7d %15s %5d %7.2lf %9.2lf %10.2lf\n",record.product_number, 
+                            record.product_type, record.description, record.product_quantity,
+                            record.product_cost, record.product_price, single_profit);
+    }
+    printf("----------------------------------------------------------\n");
+    printf("Total expected profit     %5.2lf\n\n", total_profit);
+    fclose(rec);
+}
+
 void init_costs(double *array, int size){
     int i;
     for (i = 0; i < size; ++i) {
@@ -150,15 +200,14 @@ void show_costs(double *array,char **descrip, int size){
     printf("\n");
     for (i = 0; i < size; i++) {
         double cost = *(array+i);
-        printf("%d         %s %5.s %.2lf\n", i+1,descrip[i],"$ ", cost);
+        printf("%d%15s %5.s %15.2lf\n", i+1,descrip[i],"$ ", cost);
     }
 }
 
 void getstring(char *description){
     printf("Enter the product description------: ");
         gets(description);
-}
-void strcase(char *description){
+} void strcase(char *description){
     int i = 0;
     *(description+i)=toupper(*(description+i));
     i=i+1;
@@ -175,20 +224,18 @@ void strcase(char *description){
     }
 }
 
-///////////////////////////////////////////
-///////////////////////////////////////////
 
 
 void show(int product_number, int product_type, int product_quantity, double product_cost, double product_price, char description[]){
 
     printf("These are this entries calculations.\n");
       /* Single product display */
-    printf("\nThe product number is ------ %04d\n", product_number);
+    printf("\nThe product number is -- %04d\n", product_number);
     printf("The product type is ------ %d\n", product_type);
-    printf("The description is ------%s\n", description);
-    printf("The quantity is ------ %d\n", product_quantity);
-    printf("The cost is ------ $%.2lf\n", product_cost);
-    printf("The price is ------ $%.2lf\n\n", product_price);
+    printf("The description is -------%s\n", description);
+    printf("The quantity is --------- %d\n", product_quantity);
+    printf("The cost is ------------$%.2lf\n", product_cost);
+    printf("The price is ---------- $%.2lf\n\n", product_price);
 }
 
 void showTotal(int total, double price, double cost, double profit){

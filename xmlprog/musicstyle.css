@@ -7,7 +7,21 @@ music:before
     text-align: center;
     padding-left:auto;
     content:"Music Collection";   
-    
+   	padding: 5px 10px;
+	margin: 10px;
+	background: #6495ED;
+	color: #fff;
+	font-size: 21px;
+	line-height: 1.3em;
+	border: 2px dashed #fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-box-shadow: 0 0 0 4px #6495ED, 2px 1px 4px 4px rgba(10,10,0,.5);
+	-webkit-box-shadow: 0 0 0 4px #6495ED, 2px 1px 4px 4px rgba(10,10,0,.5);
+	box-shadow: 0 0 0 4px #6495ED, 2px 1px 6px 4px rgba(10,10,0,.5);
+	text-shadow: -1px -1px rgb(155,155,155);
+ 
 
 
 }
@@ -15,7 +29,7 @@ music{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 300px;
+    width: 500px;
     }
 
 
@@ -24,7 +38,7 @@ cd{
     display:block;
     margin-right: auto;
     width: 300px;
-    border: thick double blue;
+    border: none;
 
     }
 
@@ -39,7 +53,26 @@ title{
     font-style: italic;
     font-size: 20pt;
     text-align: center;
+ display:block;
+    font-size:14pt;
+ 
+	padding: 5px 10px;
+	margin: 0px;
+    margin-top: 20px;
+	background: rgb(100,100,100);
+	color: #fff;
+	line-height: 1.3em;
+	border: 2px dashed #fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 4px 4px rgba(10,10,0,.5);
+	-webkit-box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 4px 4px rgba(10,10,0,.5);
+	box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 6px 4px rgba(10,10,0,.5);
+	text-shadow: -1px -1px rgb(155,155,155);
 }
+
+
 
 artist{
     display:block;
@@ -48,17 +81,47 @@ artist{
     font-size:18pt;
     text-align:center;
     margin-bottom:5px;
+	padding: 0px 0px;
+	margin: 0px;
+    margin-top: 0px;
+	background: rgb(100,100,100);
+	color: #fff;
+	line-height: 1.3em;
+	border: 2px dashed #fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 4px 4px rgba(10,10,0,.5);
+	-webkit-box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 4px 4px rgba(10,10,0,.5);
+	box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 6px 4px rgba(10,10,0,.5);
+	text-shadow: -1px -1px rgb(155,155,155);
 }
+
 
 publishingInfo{
     display:block;
  margin-left: auto;
     margin-right: auto;
+    font-size:10px;
     clear:both;
     margin-bottom:5px;
     color: green;
-    font-size: 14pt;
-    text-align:right;
+    text-align:center;
+
+    	padding: 0px 0px;
+	margin: 30px;
+    margin-top: 0px;
+	background: rgb(100,100,100);
+	color: #fff;
+	line-height: 1.3em;
+	border: 2px dashed #fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 4px 4px rgba(10,10,0,.5);
+	-webkit-box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 4px 4px rgba(10,10,0,.5);
+	box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 6px 4px rgba(10,10,0,.5);
+	text-shadow: -1px -1px rgb(155,155,155);
 }
 year{
     display:block;
@@ -69,10 +132,23 @@ song{
 }
 
 numberOfSongs{
-    margin-bottom:5px;
     display:block;
-    font-size:14pt;
+    font-size:10pt;
     text-align:left;
+    width:150px;
+	padding: 5px 10px;
+	margin: 10px;
+	background: rgb(100,100,100);
+	color: #fff;
+	line-height: 1.3em;
+	border: 2px dashed #fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 4px 4px rgba(10,10,0,.5);
+	-webkit-box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 4px 4px rgba(10,10,0,.5);
+	box-shadow: 0 0 0 4px rgb(100,100,100), 2px 1px 6px 4px rgba(10,10,0,.5);
+	text-shadow: -1px -1px rgb(155,155,155);
 }
 numberOfSongs:after
 {
@@ -82,10 +158,25 @@ songTitle{
     display:block;
     text-align:left;
     font-style: italic;
-    font-size: 12pt;
+    font-size: 10pt;
 }
 
 songLength{
     display:none;
 }
-
+songTitle {
+	padding: 5px 10px;
+	margin: 10px;
+	background: #6495ED;
+	color: #fff;
+	font-size: 21px;
+	line-height: 1.3em;
+	border: 2px dashed #fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-box-shadow: 0 0 0 4px #6495ED, 2px 1px 4px 4px rgba(10,10,0,.5);
+	-webkit-box-shadow: 0 0 0 4px #6495ED, 2px 1px 4px 4px rgba(10,10,0,.5);
+	box-shadow: 0 0 0 4px #6495ED, 2px 1px 6px 4px rgba(10,10,0,.5);
+	text-shadow: -1px -1px rgb(155,155,155);
+}
