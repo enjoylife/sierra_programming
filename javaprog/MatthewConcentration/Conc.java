@@ -68,14 +68,17 @@ class Conc
     public int getCardsRemain()
     {
         int total=0;
+        
          for (int i=0;i<this.cards.length ;i++ ){
              if(this.cards[i].getStatus()<0){
                  total+=this.cards[i].getStatus();
                  
              }
              this.cardsRemain=NUMCARDS-total;
+             total = this.cardsRemain;
+             
          }
-         return this.cardsRemain;
+         return total;
     }
     
     
