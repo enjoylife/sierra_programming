@@ -101,6 +101,7 @@ void addEntry(void){
             &pq_ll, &pq_ul,//product quantity
             &pc_ll, &pc_ul,//product cost
             &pp_ll, &pp_ul);//product price
+    fclose(f_limits);
 
 /*********************************/
 /*  NEW FOR LAB 10 */
