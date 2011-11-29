@@ -5,10 +5,11 @@
         private int score;
         private int hand;
 
-        public Player(int id)
+        public Player(int id, String name)
         {
             this.id = id;
             this.hand = 0;
+            this.name = name;
         }
         public int compareTo(Object o)
         {
@@ -25,6 +26,11 @@
         }
         public int getScore()
         {
+            return this.score;
+        }
+        public int setScore(int s)
+        {
+            this.score= s;
             return this.score;
         }
         public int getId()

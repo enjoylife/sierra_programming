@@ -1,17 +1,17 @@
+/** for the array sort */
 import java.util.Arrays;
 
+/** Takes 2 args */
 class Conc
 {
    private Player [] players;
-   private int turn;
-   
-   private int cardsClicked;
-   private int checkCard1, checkCard2;// 0, 1, or 2
-   private int cardsRemain;
    public Card []cards;
+   private int turn, cardsClicked, checkCard1, checkCard2, cardsRemain, NUMCARDS, NUMPLAYERS;
+   
+   
+   
    // card.id 1-3 if in play, negative if face up, zero if not in play
-   private int NUMCARDS;
-   private int NUMPLAYERS;
+  
    
     
     public Conc(int players, int cards)
@@ -19,9 +19,12 @@ class Conc
         this.NUMPLAYERS= players;
         this.NUMCARDS = cards;
         this.players = new Player[this.NUMPLAYERS];
+        
         for (int i=0;i<this.players.length ;i++ )
         {
-            this.players[i] = new Player((i+1));
+            /** dont want a zero player id, id*/
+            this.players[i] = new Player((i+1), "Player: "+(i+1));
+           
         }
 
         this.cards = new Card[this.NUMCARDS];
@@ -30,6 +33,7 @@ class Conc
         this.cardsRemain= NUMCARDS;
         this.cardsClicked= 0;
     }
+    
       /** Set the cards arrary obj's.Values to have a matching id  */
     void initalizeCards()
     {
@@ -39,16 +43,18 @@ class Conc
         }
         
     }
+    /** Helper for debuging of array */
     void cards(){
         for(int i=0;i<this.cards.length ;i++ ){
             System.out.println(this.cards[i].getValue());
         }
     }
-            
-    
-  
-   
-    /** helper to get the index after shuffle */
+    /** Return a players score */
+    int getPlayerScore(int p){
+        return this.players[p].getScore();
+    }
+         
+       /** Linear search helper to get the index after shuffle */
    public int getCardIndex(int cardV){
        int index =-1;
        for (int i=0;i<this.cards.length ;i++ ){
@@ -65,9 +71,11 @@ class Conc
          for (int i=0;i<this.cards.length ;i++ ){
              if(this.cards[i].getStatus()<0){
                  total+=this.cards[i].getStatus();
+                 
              }
+             this.cardsRemain=NUMCARDS-total;
          }
-         return NUMCARDS-total;
+         return this.cardsRemain;
     }
     
     
@@ -122,10 +130,10 @@ class Conc
         }
     }
     
-  /** Move ->int , int -> int
+  /** Move ->int card , int player -> int
    * Given an index to both a player and a card, turn the card status 
    * to out of play and increase the cards clicked and return 0 if player needs to go again, 1 if cards
-   *  match, or 2 if they dont match
+   *  match, or 2 if they dont match or -1 if something goes wrong
    */
   public int move( int card, int player){
       /** Check first if this is even legal */
@@ -142,11 +150,28 @@ class Conc
             this.cardsClicked = 0;
             this.checkCard2= cards[card].getValue();
             this.turn++;
+            /** we have a good match follow up with score change*/
             if(this.checkCard2==this.checkCard1){
+                this.checkCard2=0;
+                this.checkCard1=0;
+                /** add to this players score */
+                int score =this.players[player-1].getScore();
+                this.players[player-1].setScore(score+1);
                 return 1;
+                
             }
             else {
+                /** We have a loser. Need to reset the cards status back to in play */
+                int index=this.getCardIndex(checkCard2);
+                int index1=this.getCardIndex(checkCard1);
+                this.cards[index].setStatus(1);
+                this.cards[index1].setStatus(1);
+                /** And reset the check cards just for good mesure */
+                this.checkCard2=0;
+                this.checkCard1=0;
+                
                 return 2;
+                
             }
         }       
     }
@@ -168,8 +193,15 @@ class Conc
          /** or just use a smart approach. . .  Collections.shuffle(Arrays.asList(cards)); */
         }
     }
-    
-   
+    /** Helper to provide debuging display */
+   String status(){
+       return
+       "This Game has "+ this.NUMPLAYERS+" players, "+ this.NUMCARDS +" cards, \n"+
+       "Cards Clicked:"+ this.cardsClicked +"  Whose turn: " + this.turn + ". And he has clicked "+
+       this.cardsClicked +" cards,"+ " Cards left:" + this.cardsRemain +"\n";
+       
+       
+    }
    
                   
    
