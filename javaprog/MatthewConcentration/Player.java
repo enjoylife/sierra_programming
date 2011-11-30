@@ -1,5 +1,6 @@
       class Player implements Comparable
     {
+        /** Right now we give just a simple "Player 1" name */
         private String name, description;
         private int id;
         private int score;
@@ -11,6 +12,8 @@
             this.hand = 0;
             this.name = name;
         }
+        
+        /** Used For the shuffle */
         public int compareTo(Object o)
         {
             Player p = (Player)o;

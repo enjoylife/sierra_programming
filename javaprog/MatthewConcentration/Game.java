@@ -69,12 +69,19 @@ public class Game extends Program
         
         flipback= new JButton("Flip Over");
         flipback.setActionCommand("flip");
+        
         this.addActionListeners();
     }
         
     public void actionPerformed(ActionEvent a)
      {
           String action = a.getActionCommand();
+          
+          int caction = Integer.parseInt(action);
+         
+          
+            
+              
           
           
             

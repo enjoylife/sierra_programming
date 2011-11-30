@@ -1,16 +1,24 @@
 /** for the array sort */
 import java.util.Arrays;
 
-/** Takes 2 args */
+/** Takes 2 args
+*   Example: Conc c = new Conc(2,6); // This creates a game with 2 players 6 cards
+*/
+
 class Conc
 {
    private Player [] players;
    public Card []cards;
-   private int turn, cardsClicked, checkCard1, checkCard2, cardsRemain, NUMCARDS, NUMPLAYERS;
+   private int turn, cardsClicked, checkCard1,
+   checkCard2, cardsRemain, NUMCARDS, NUMPLAYERS;
    
    
    
-   // card.id 1-3 if in play, negative if face up, zero if not in play
+   /**
+    *  Game Logic:
+    *  1) card.status = [1-3]   //if in play, negative if face up, zero if not in play
+    *  
+    */ 
   
    
     
@@ -19,42 +27,46 @@ class Conc
         this.NUMPLAYERS= players;
         this.NUMCARDS = cards;
         this.players = new Player[this.NUMPLAYERS];
+        this.cards = new Card[this.NUMCARDS];
         
         for (int i=0;i<this.players.length ;i++ )
         {
-            /** dont want a zero player id, id*/
+            /**GOTCHAS: dont want a zero player id, id*/
             this.players[i] = new Player((i+1), "Player: "+(i+1));
-           
         }
 
-        this.cards = new Card[this.NUMCARDS];
+        
         this.initalizeCards();
         this.turn= 1;
         this.cardsRemain= NUMCARDS;
         this.cardsClicked= 0;
     }
     
-      /** Set the cards arrary obj's.Values to have a matching id  */
+      /** Helper for Setting the cards.Values to have a matching id (aka their is pairs)  */
     void initalizeCards()
     {
         for (int i=0;i<this.cards.length ;i++ ){
             this.cards[i] = new Card(i);
             this.cards[i].setValue((i/2)+1);
         }
-        
     }
+    
     /** Helper for debuging of array */
     void cards(){
+        
         for(int i=0;i<this.cards.length ;i++ ){
             System.out.println(this.cards[i].getValue());
         }
     }
     /** Return a players score */
     int getPlayerScore(int p){
+        
         return this.players[p].getScore();
     }
          
-       /** Linear search helper to get the index after shuffle */
+       /** Linear search helper to get the index after shuffle 
+        * Reason: cards indexs are random after shuffle
+        */
    public int getCardIndex(int cardV){
        int index =-1;
        for (int i=0;i<this.cards.length ;i++ ){
@@ -75,15 +87,12 @@ class Conc
                  
              }
              this.cardsRemain=NUMCARDS-total;
-             total = this.cardsRemain;
+             
              
          }
+         total = this.cardsRemain;
          return total;
     }
-    
-    
-    
-
 
     /**
      * isGameOver : none -> boolean
@@ -95,6 +104,7 @@ class Conc
             return false;
         else return true;
     }
+    
     /**
      * whoWon : none -> int
      * Return the player number of the winner or
@@ -137,16 +147,23 @@ class Conc
    * Given an index to both a player and a card, turn the card status 
    * to out of play and increase the cards clicked and return 0 if player needs to go again, 1 if cards
    *  match, or 2 if they dont match or -1 if something goes wrong
+   *  GOTCHAS: players and cards start at 0 index.
    */
   public int move( int card, int player){
+      int legal=-1;
       /** Check first if this is even legal */
-      if(isValidMove(card)&&(this.turn==player)){
+      if(!(isValidMove(card)&&(this.turn==player+1))){
+          legal =-1;
+      }
+      /** So it is legal proceed */
+      else{
+            
           /** -1 to signify picked or out of play */
           if (this.cardsClicked ==0){
           cards[card].setStatus(-1);
           this.cardsClicked++;
           this.checkCard1= cards[card].getValue();
-          return 0;
+          legal= 0;
         }
         /** Second turn so need to check */
         else if( this.cardsClicked == 1){
@@ -158,9 +175,9 @@ class Conc
                 this.checkCard2=0;
                 this.checkCard1=0;
                 /** add to this players score */
-                int score =this.players[player-1].getScore();
-                this.players[player-1].setScore(score+1);
-                return 1;
+                int score =this.players[player].getScore();
+                this.players[player].setScore(score+1);
+                legal= 1;
                 
             }
             else {
@@ -173,12 +190,12 @@ class Conc
                 this.checkCard2=0;
                 this.checkCard1=0;
                 
-                return 2;
+                legal=2;
                 
             }
         }       
     }
-    return -1;
+    return legal;
    }
      
         

@@ -3,6 +3,7 @@ comment0.params=id\ name
 comment0.target=Player(int,\ java.lang.String)
 comment1.params=o
 comment1.target=int\ compareTo(java.lang.Object)
+comment1.text=Used\ For\ the\ shuffle
 comment2.params=
 comment2.target=int\ getScore()
 comment3.params=s
