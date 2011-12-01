@@ -7,9 +7,9 @@ import java.util.Arrays;
 
 class Conc
 {
-   private Player [] players;
-   private Card []cards;
-   private int turn, cardsClicked, checkCard1,
+   public Player [] players;
+   public Card []cards;
+   public int turn, cardsClicked, checkCard1,
    checkCard2, cardsRemain, NUMCARDS, NUMPLAYERS;
    
    
@@ -58,9 +58,11 @@ class Conc
         
         for(int i=0;i<this.cards.length ;i++ ){
             System.out.println(this.cards[i].getValue());
+            System.out.println(this.cards[i].getStatus());
         }
     }
-    /** Return a players score */
+    /** Return a players score 
+       GOTCHAS: Uses 0 indexing (aka player1 is acutally [o] )*/
     public int getPlayerScore(int p){
         
         return this.players[p].getScore();
@@ -76,13 +78,13 @@ class Conc
         else return this.checkCard2;
     }
          
-       /** Linear search helper to get the index after shuffle 
+       /** Linear search helper to set the status back to a regular card
         * Reason: cards indexs are random after shuffle
         */
    public int getCardIndex(int cardV){
        int index =-1;
        for (int i=0;i<this.cards.length ;i++ ){
-        if(this.cards[i].getValue()==cardV)
+        if(this.cards[i].getValue()==cardV && this.cards[i].getStatus()==-1)
             index = i;
         }
         return index;     
@@ -95,15 +97,15 @@ class Conc
         
          for (int i=0;i<this.cards.length ;i++ ){
              if(this.cards[i].getStatus()<0){
-                 total+=this.cards[i].getStatus();
+                 total++;
                  
              }
-             this.cardsRemain=NUMCARDS-total;
+             
              
              
          }
-         total = this.cardsRemain;
-         return total;
+         
+         return this.cardsRemain=NUMCARDS-total;
     }
 
     /**
@@ -147,7 +149,7 @@ class Conc
      */
     boolean isValidMove(int cardIndex){
         boolean test =false;
-        if(isGameOver()&& cardsClicked>1){
+        if(isGameOver()&& cardsClicked>2 ){
             return false;
         }
         else {
@@ -168,9 +170,9 @@ class Conc
    */
   public int move( int card, int player){
       int legal=-1;
-      /** Check first if this is even legal */
+      /** Check first if this is  illegal */
       if(!(isValidMove(card)&&(this.turn==player+1))){
-          legal =-1;
+          return legal;
       }
       /** So it is legal proceed */
       else{
@@ -185,17 +187,20 @@ class Conc
         }
         /** Second turn so need to check */
         else if( this.cardsClicked == 1){
-            this.cardsClicked = 0;
+            
             this.checkCard2= cards[card].getValue();
-            this.turn++;
+            cards[card].setStatus(-1);
+           
             /** we have a good match follow up with score change*/
             if(this.checkCard2==this.checkCard1){
+                
                 this.checkCard2=0;
                 this.checkCard1=0;
                 /** add to this players score */
                 int score =this.players[player].getScore();
                 this.players[player].setScore(score+1);
                 legal= 1;
+                this.cardsClicked = 0;
                 
             }
             else {
@@ -207,7 +212,9 @@ class Conc
                 /** And reset the check cards just for good mesure */
                 this.checkCard2=0;
                 this.checkCard1=0;
-                
+                 /** increase the turn counter */
+            this.turn= this.turn>=NUMPLAYERS ? 1 : this.turn+1;
+                this.cardsClicked = 0;
                 legal=2;
                 
             }
@@ -234,9 +241,9 @@ class Conc
     /** Helper to provide debuging display */
    String status(){
        return
-       "This Game has "+ this.NUMPLAYERS+" players, "+ this.NUMCARDS +" cards, \n"+
+       "This Game has "+ this.NUMPLAYERS+" players, "+ this.NUMCARDS +" cards, "+
        "Cards Clicked:"+ this.cardsClicked +"  Whose turn: " + this.turn + ". And he has clicked "+
-       this.cardsClicked +" cards,"+ " Cards left:" + this.cardsRemain +"\n";
+       this.cardsClicked +" cards,"+ " Cards left:" + this.getCardsRemain() +"\n";
        
        
     }
