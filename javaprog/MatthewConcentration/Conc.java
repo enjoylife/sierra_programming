@@ -9,8 +9,10 @@ class Conc
 {
    public Player [] players;
    public Card []cards;
-   public int turn, cardsClicked, checkCard1,
-   checkCard2, cardsRemain, NUMCARDS, NUMPLAYERS;
+   public int turn, cardsclicked, checkcard1,
+   checkcard2, cardsremain;
+   
+   private int NUMCARDS, NUMPLAYERS;
    
    
    
@@ -26,46 +28,44 @@ class Conc
     {
         this.NUMPLAYERS= players;
         this.NUMCARDS = cards;
+        this.cardsremain= NUMCARDS;
+        
         this.players = new Player[this.NUMPLAYERS];
         this.cards = new Card[this.NUMCARDS];
+        
+        this.turn= 1;
+        this.cardsclicked= 0;
         
         for (int i=0;i<this.players.length ;i++ )
         {
             /**GOTCHAS: dont want a zero player id, id*/
-            this.players[i] = new Player((i+1), "Player: "+(i+1));
+            this.players[i] = new Player("Random Name", (i+1));
         }
+        /** GOTCHA: Cards have a matching pair of id's */
+        for (int i=0;i<this.cards.length ;i++ ){
+            this.cards[i] = new Card("Card name:None",(i/2)+1);
+        }        
 
-        
-        this.initalizeCards();
-        this.turn= 1;
-        this.cardsRemain= NUMCARDS;
-        this.cardsClicked= 0;
     }
     
-      /** Helper for Setting the cards.Values to have a matching id (aka their is pairs)
-         GOTCHA: Cards have a starting 1 index
-         */
-    void initalizeCards()
-    {
-        for (int i=0;i<this.cards.length ;i++ ){
-            this.cards[i] = new Card();
-            this.cards[i].setValue((i/2)+1);
-        }
-    }
+      
+         
+       
+    
     
     /** Helper for debuging of array */
     void cards(){
         
         for(int i=0;i<this.cards.length ;i++ ){
             System.out.println(this.cards[i].getValue());
-            System.out.println(this.cards[i].getStatus());
+            System.out.println(""+this.cards[i].printStatus());
         }
     }
     /** Return a players score 
        GOTCHAS: Uses 0 indexing (aka player1 is acutally [o] )*/
     public int getPlayerScore(int p){
+        return this.getPlayer(p).getScore();
         
-        return this.players[p].getScore();
     }
    
     
@@ -74,8 +74,8 @@ class Conc
         return this.cards[v].getValue();
     }
     public int getCheckCard(int c){
-        if (c==1)return this.checkCard1;
-        else return this.checkCard2;
+        if (c==1)return this.checkcard1;
+        else return this.checkcard2;
     }
          
        /** Linear search helper to set the status back to a regular card
@@ -84,11 +84,20 @@ class Conc
    public int getCardIndex(int cardV){
        int index =-1;
        for (int i=0;i<this.cards.length ;i++ ){
-        if(this.cards[i].getValue()==cardV && this.cards[i].getStatus()==-1)
+        if(this.cards[i].getValue()==cardV)
             index = i;
         }
         return index;     
         } 
+   public Player getPlayer(int id){
+       int index=0;
+       for(int i=0; i<this.players.length; i++){
+           if(this.players[i].getId()==id){
+             index=i;
+            }
+        }
+       return this.players[index];
+    }
         
     /**Sum all cards that have a negative status (AKA their out of play) */ 
     public int getCardsRemain()
@@ -96,7 +105,7 @@ class Conc
         int total=0;
         
          for (int i=0;i<this.cards.length ;i++ ){
-             if(this.cards[i].getStatus()<0){
+             if(this.cards[i].getStat("status")<0){
                  total++;
                  
              }
@@ -105,7 +114,7 @@ class Conc
              
          }
          
-         return this.cardsRemain=NUMCARDS-total;
+         return this.cardsremain=NUMCARDS-total;
     }
 
     /**
@@ -130,17 +139,22 @@ class Conc
      * zero if the game is not over yet.
      */
     int whoWon(){
-        
+        int winner=-1;
         if (!isGameOver()){
-            return 0;
+            return winner =0;
         }
         else {
-            Arrays.sort(this.players);
-             return this.players[0].getId();
-            
-        }
+            for(int i=0; i<players.length; i++){
+                if (players[i].getScore()>winner){
+                    winner=players[i].getId();
+                }
+
+            }
                     
+       }
+       return winner;
     }
+       
     
     /**
      * isValidMove : int -> boolean
@@ -149,12 +163,12 @@ class Conc
      */
     boolean isValidMove(int cardIndex){
         boolean test =false;
-        if(isGameOver()&& cardsClicked>2 ){
+        if(isGameOver()){
             return false;
         }
         else {
             
-           switch (cards[cardIndex].getStatus()){
+           switch (cards[cardIndex].getStat("status")){
             case 1: test = true; break;
             case -1: test = false; break;
            }
@@ -171,7 +185,7 @@ class Conc
   public int move( int card, int player){
       int legal=-1;
       /** Check first if this is  illegal */
-      if(!(isValidMove(card)&&(this.turn==player+1))){
+      if(!(isValidMove(card))||!(this.turn==player)){
           return legal;
       }
       /** So it is legal proceed */
@@ -179,42 +193,48 @@ class Conc
             
           /** -1 to signify picked or out of play 
           *   The first move */
-          if (this.cardsClicked ==0){
-          cards[card].setStatus(-1);
-          this.cardsClicked++;
-          this.checkCard1= cards[card].getValue();
+          if (this.cardsclicked ==0){
+          cards[card].setStat("status",-1);
+          
+          this.checkcard1= cards[card].getValue();
           legal= 0;
+          this.cardsclicked=1;
         }
         /** Second turn so need to check */
-        else if( this.cardsClicked == 1){
+        else if( this.cardsclicked == 1){
             
-            this.checkCard2= cards[card].getValue();
-            cards[card].setStatus(-1);
+            this.checkcard2= cards[card].getValue();
+            cards[card].setStat("status",-1);
            
             /** we have a good match follow up with score change*/
-            if(this.checkCard2==this.checkCard1){
+            if(this.checkcard2==this.checkcard1){
                 
-                this.checkCard2=0;
-                this.checkCard1=0;
+                this.checkcard2=0;
+                this.checkcard1=0;
                 /** add to this players score */
                 int score =this.players[player].getScore();
-                this.players[player].setScore(score+1);
+                this.getPlayer(player).setScore(score+1);
                 legal= 1;
-                this.cardsClicked = 0;
+                this.cardsclicked = 0;
                 
             }
             else {
-                /** We have a loser. Need to reset the cards status back to in play */
-                int index=this.getCardIndex(checkCard2);
-                int index1=this.getCardIndex(checkCard1);
-                this.cards[index].setStatus(1);
-                this.cards[index1].setStatus(1);
+                /** We have a loser. Need to reset the cards status back to in play 
+                int index=this.getCardIndex(checkcard2);
+                int index1=this.getCardIndex(checkcard1);*/
+                this.cards[checkcard1].setStat("status", 1);
+                this.cards[checkcard2].setStat("status",1);
                 /** And reset the check cards just for good mesure */
-                this.checkCard2=0;
-                this.checkCard1=0;
+                this.checkcard2=0;
+                this.checkcard1=0;
                  /** increase the turn counter */
-            this.turn= this.turn>=NUMPLAYERS ? 1 : this.turn+1;
-                this.cardsClicked = 0;
+                 if(this.turn>=NUMPLAYERS){
+                      this.turn=1;
+                    }
+                      else{
+                        this.turn++;
+                      }
+                this.cardsclicked = 0;
                 legal=2;
                 
             }
@@ -242,8 +262,8 @@ class Conc
    String status(){
        return
        "This Game has "+ this.NUMPLAYERS+" players, "+ this.NUMCARDS +" cards, "+
-       "Cards Clicked:"+ this.cardsClicked +"  Whose turn: " + this.turn + ". And he has clicked "+
-       this.cardsClicked +" cards,"+ " Cards left:" + this.getCardsRemain() +"\n";
+       "Cards Clicked:"+ this.cardsclicked +"  Whose turn: " + this.turn + ". And he has clicked "+
+       this.cardsclicked +" cards,"+ " Cards left:" + this.getCardsRemain() +"\n";
        
        
     }

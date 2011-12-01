@@ -8,9 +8,8 @@ comment2.target=void\ testWhoWon(tester.Tester)
 comment3.params=t
 comment3.target=void\ testPlayersScore(tester.Tester)
 comment4.params=t
-comment4.target=void\ testCardIndex(tester.Tester)
+comment4.target=void\ testGame(tester.Tester)
+comment4.text=void\ testCardIndex(Tester\ t){\n\ \ \ \ \ \ \ \ Conc\ c\ \=\ new\ Conc(2,6);\n\ \ \ \ \ \ \ \ t.checkExpect(c.getCardIndex(2),\ 3);\n\ \ \ \ \ \ \ \ t.checkExpect(c.getCardIndex(5),\ -1);\n\ \ \ \ \ \ \ \ Conc\ d\ \=\ new\ Conc(2,20);\n\ \ \ \ \ \ \ \ t.checkExpect(d.getCardIndex(10),19);\n\ \ \ \ \ \ \ \ t.checkExpect(d.getCardIndex(6),11);\n}
 comment5.params=t
-comment5.target=void\ testGame(tester.Tester)
-comment6.params=t
-comment6.target=void\ testisValidMove(tester.Tester)
-numComments=7
+comment5.target=void\ testisValidMove(tester.Tester)
+numComments=6

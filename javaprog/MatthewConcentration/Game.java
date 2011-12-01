@@ -10,15 +10,15 @@ public class Game extends Program
     TablePanel scoreboard;
     TablePanel cardboard;
     VPanel gameboard;
-    JLabel p1score, p2score, playerTurn;
+    JLabel p1score, p2score, playerturn;
     JButton reset;
     Conc c;
     // perfect name
-    JButton [] cardButts;
+    JButton [] cardbutts;
     JButton flipback;
     Timer timer;
     int players, cards;
-    int card1=0, card2=0;
+    int card1=-1, card2=-1;
     ImageIcon back;
     ImageIcon [] pairs;
 
@@ -27,20 +27,18 @@ public class Game extends Program
     {    
         
         public void actionPerformed(ActionEvent a){
-          
-           
-          if(card1!=0 && card2!=0){
-              System.out.println("ENTERED ACtion");
-         cardButts[card1].setIcon(back);
-         cardButts[card2].setIcon(back);
-         
-          
-         
-         
-         
-        }
-        }
-    };
+           String action= a.getActionCommand();
+           System.out.println("Started CARDLOGIC");
+            if (action=="flip"){
+                 if(card1!=-1 && card2!=-1){
+                       System.out.println("ENTERED CardFlip ACtion");
+                       cardbutts[card1].setIcon(back);
+                       cardbutts[card2].setIcon(back); 
+                }
+            System.out.println("Finished with cardFlip");
+           }
+           }
+       };
     
     
     public Game()
@@ -48,19 +46,25 @@ public class Game extends Program
         
         this.start();
     }
-    
+    private void startCardFlip(){
+        
+        this.flipback.doClick();
+    }
     public void init()
     {
        
          
-        timer = new Timer(3000, cardFlip);
-         timer.setRepeats(false);
+        timer = new Timer(2000, cardFlip);
+        timer.setRepeats(false);
+        this.timer.start();
          
+        
+        System.out.println("Timer has just started");
          
         c = new Conc(2,6);
         gameboard = new VPanel();
         this.add(gameboard);
-        cardButts = new JButton[6];
+        cardbutts = new JButton[6];
         pairs = new ImageIcon[3];
         
         
@@ -75,24 +79,26 @@ public class Game extends Program
         p1score= new JLabel("0");
         p2score= new JLabel("0");
         
-        playerTurn = new JLabel(""+c.getTurn());
+        playerturn = new JLabel(""+c.getTurn());
         reset= new JButton("New Game");
         reset.setActionCommand("reset");
+        reset.addActionListener(this);
+        
         
         flipback= new JButton("Flip Over");
         flipback.setActionCommand("flip");
-        
+        flipback.addActionListener(cardFlip);
         scoreboard.add(p1score);
         scoreboard.add(reset);
         scoreboard.add(p2score);
-        scoreboard.add(playerTurn);
+        scoreboard.add(playerturn);
         
         
          
         //picture for back of cards
         back= new ImageIcon("back.png");
         // Pair pictures
-        for (int i=0, y=0; i <this.cardButts.length; i++){
+        for (int i=0, y=0; i <this.cardbutts.length; i++){
             //get the value
             y=this.c.getCardValue(i);
             //match the value with a pair
@@ -101,21 +107,23 @@ public class Game extends Program
         }
         
         //Intilaze the amount of cards
-        for(int i=0; i<this.cardButts.length; i++){
-            this.cardButts[i] = new JButton();
-            this.cardButts[i].setActionCommand(""+i);
-            this.cardButts[i].setIcon(back);
-            this.cardboard.add(cardButts[i]);
-            cardButts[i].setVisible(true);
+        for(int i=0; i<this.cardbutts.length; i++){
+            this.cardbutts[i] = new JButton();
+            this.cardbutts[i].setActionCommand(""+i);
+            this.cardbutts[i].setIcon(back);
+            this.cardboard.add(cardbutts[i]);
+            cardbutts[i].setVisible(true);
+            cardbutts[i].addActionListener(this);
             
             
         }
         
         this.addActionListeners();
-        for(int i=0; i<this.cardButts.length; i++){
-             cardButts[i].addActionListener(cardFlip);
+       
+        /** for(int i=0; i<this.cardbutts.length; i++){
+             cardbutts[i].addActionListener(cardFlip);
             
-        }
+        }*/
       
        
         
@@ -123,87 +131,77 @@ public class Game extends Program
         
     public void actionPerformed(ActionEvent a)
      {
-         String action;
-        
+        String action;
         int match=-1;
         int cardv;
-        
         int caction;
-        action = a.getActionCommand(); 
-       
         
-                        
-      
-       
-          
-          if (action=="flip"){
-            }
+        
+        action = a.getActionCommand();
+         
             
           if (action=="reset"){
               this.c = new Conc(2,6);
               //Intilaze the amount of cards
-           for(int i=0; i<this.cardButts.length; i++){
-               cardButts[i].setIcon(back);
-               cardButts[i].setVisible(true);
-               cardButts[i].setEnabled(true);
+           for(int i=0; i<this.cardbutts.length; i++){
+               cardbutts[i].setIcon(back);
+               cardbutts[i].setVisible(true);
+               cardbutts[i].setEnabled(true);
              }
              p1score= new JLabel("0");
              p2score= new JLabel("0");
-             card1 =0;
-             card2 =0;
-             System.out.println("This is a test");
+             card1 =-1;
+             card2 =-1;
+             System.out.println("This is a new test of Conc");
+             System.out.println("The card1 is "+card1+ "    Card2 is"+card2);
          }
          
-          /** Check to make sure player is pushing cardButts */
+          /** Check to make sure player is pushing cardbutts */
           caction = Integer.parseInt(a.getActionCommand());
-          System.out.println("Caction is"+caction);
+          System.out.println("Caction is: "+caction);
           
-          if(caction>=-1 && caction <=cardButts.length){ 
+          if(caction>=-1 && caction <=cardbutts.length){ 
             /** subtract second arg index(Players starts at 0) */
-            match = c.move(caction,c.getTurn()-1);
-             System.out.println("Match is"+match);
-            
+            match = c.move(caction,c.getTurn());
+             System.out.println("Match is: "+match);
+            System.out.println("Card action Enabled?: "+cardbutts[caction].isEnabled() );
             switch(match){
                   /**keep first up for player */
                 case 0:cardv=c.getCardValue(caction);  
-                       cardButts[caction].setIcon(pairs[cardv-1]);
+                       cardbutts[caction].setIcon(pairs[cardv-1]);
                       
-                       System.out.println("Card"+cardButts[caction].isEnabled() );
+                       
                        card1 = caction;
                        
+                       System.out.println("The card1 is "+card1+ "    Card2 is"+card2);
                        break;
                        /** match */
                 case 1:cardv=c.getCardValue(caction);  
-                       card2= caction;
-                       cardButts[caction].setIcon(pairs[cardv-1]);
-                        cardButts[card1].setEnabled(false);
-                        cardButts[card2].setEnabled(false);
-                       
+                      
+                       cardbutts[caction].setIcon(pairs[cardv-1]);
+                        cardbutts[card1].setEnabled(false);
+                        cardbutts[cardv].setEnabled(false);
+                       card2= -1;
+                       card1=-1;
+                       System.out.println("The card1 is "+card1+ "    Card2 is"+card2);
                        break; 
                 
                 /**cards dont match */
                 case 2: cardv=c.getCardValue(caction);
+                System.out.println("Entered cards dont match");
                         card2= caction;
-                        cardButts[caction].setIcon(pairs[cardv-1]);
-                        cardButts[card1].removeActionListener(this);
-                        cardButts[card2].removeActionListener(this);
-                        timer.start();
+                        cardbutts[caction].setIcon(pairs[cardv-1]);
+                        //cardbutts[card1].removeActionListener(this);
+                        //cardbutts[card2].removeActionListener(this);
                         
-                        cardButts[card2].doClick();
-                        cardButts[card1].addActionListener(this);
-                        cardButts[card2].addActionListener(this);
+                        this.startCardFlip();
                         
+                        System.out.println("StartCARDFLIP");
                         
-                        
-                        
-                        
-                        
-                        
+                        //System.out.println("Second card has been prog clicked");
                        
-                        
                         /**TODO ADD A DELAY BETWEEN FLIPS */
-                        
-                        
+                        System.out.println("The card1 is "+card1+ "    Card2 is"+card2);
                         break;
                  default: break;
                     }
@@ -211,7 +209,7 @@ public class Game extends Program
  
       p1score.setText(""+this.c.getPlayerScore(0));
         p2score.setText(""+this.c.getPlayerScore(1));
-        playerTurn.setText(""+this.c.getTurn());
+        playerturn.setText(""+this.c.getTurn());
    
     }
     

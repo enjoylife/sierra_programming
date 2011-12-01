@@ -1,19 +1,52 @@
-      class Player implements Comparable
+/**  Player class is used by a game logic class ie; Conc
+ * Constructors: String name, int id,
+ * 
+ * Used get only: Id, Name
+ *      set only:
+ *      both: Score
+ * 
+ *
+ */     
+class Player implements Comparable
     {
-        /** Right now we give just a simple "Player 1" name */
-        private String name, description;
+   
+        public String name;//, description;
         private int id;
         private int score;
-        private int hand;
+        
+        //private int hand;
 
-        public Player(int id, String name)
+        public Player(String name, int id)
         {
             this.id = id;
-            this.hand = 0;
             this.name = name;
+            //this.hand = 0;
         }
         
-        /** Used For the shuffle */
+        
+        public int getScore()
+        {
+            return this.score;
+        }
+        public void setScore(int s)
+        {
+            this.score= s;
+            
+        }
+        
+        public int getId()
+        {
+            return this.id;
+        }
+        
+        public String getName()
+        {
+            return this.name;
+        }
+        
+        
+        
+        /** Used For the shuffle Comparable func */
         public int compareTo(Object o)
         {
             Player p = (Player)o;
@@ -27,28 +60,12 @@
             }
             return 0;
         }
-        public int getScore()
-        {
-            return this.score;
-        }
-        public int setScore(int s)
-        {
-            this.score= s;
-            return this.score;
-        }
-        public int getId()
-        {
-            return this.id;
-        }
-        public String getName()
-        {
-            return this.name;
-        }
+        /**
         public int getHand(){
             return this.hand;
         }
         public void setHand(int hand){
             this.hand =hand;
-        }
+        }*/
 
     }
