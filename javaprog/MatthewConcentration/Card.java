@@ -1,8 +1,6 @@
 public class Card
 {   
-    /** this is used for identification for games where their is no set value, aka concentration */
-    private int cardId;
-    
+   
     /** Not used */
     private String cardName;
     
@@ -12,9 +10,9 @@ public class Card
     /** this should be a value between -1 to 3 */
     private int status;
 
-    public Card(int id)
+    public Card()
     {
-        this.cardId = id;
+        
         this.status = 1;
     }
     
@@ -25,14 +23,7 @@ public class Card
     public void setValue(int v){
         this.cardValue = v;
     }
-    
-     public int getId(){
-        return this.cardId;
-    }
-    
-    public void setId(int id){
-        this.cardId = id;
-    }
+  
     
     public void setStatus(int s)
     {

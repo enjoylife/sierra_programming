@@ -8,7 +8,7 @@ import java.util.Arrays;
 class Conc
 {
    private Player [] players;
-   public Card []cards;
+   private Card []cards;
    private int turn, cardsClicked, checkCard1,
    checkCard2, cardsRemain, NUMCARDS, NUMPLAYERS;
    
@@ -42,11 +42,13 @@ class Conc
         this.cardsClicked= 0;
     }
     
-      /** Helper for Setting the cards.Values to have a matching id (aka their is pairs)  */
+      /** Helper for Setting the cards.Values to have a matching id (aka their is pairs)
+         GOTCHA: Cards have a starting 1 index
+         */
     void initalizeCards()
     {
         for (int i=0;i<this.cards.length ;i++ ){
-            this.cards[i] = new Card(i);
+            this.cards[i] = new Card();
             this.cards[i].setValue((i/2)+1);
         }
     }
@@ -59,9 +61,19 @@ class Conc
         }
     }
     /** Return a players score */
-    int getPlayerScore(int p){
+    public int getPlayerScore(int p){
         
         return this.players[p].getScore();
+    }
+   
+    
+    /** Helper to see the card value inGame */
+    public int getCardValue(int v){
+        return this.cards[v].getValue();
+    }
+    public int getCheckCard(int c){
+        if (c==1)return this.checkCard1;
+        else return this.checkCard2;
     }
          
        /** Linear search helper to get the index after shuffle 
@@ -103,6 +115,11 @@ class Conc
         if(getCardsRemain()>0)
             return false;
         else return true;
+    }
+    
+    public int getTurn()
+    {
+        return this.turn;
     }
     
     /**
@@ -158,7 +175,8 @@ class Conc
       /** So it is legal proceed */
       else{
             
-          /** -1 to signify picked or out of play */
+          /** -1 to signify picked or out of play 
+          *   The first move */
           if (this.cardsClicked ==0){
           cards[card].setStatus(-1);
           this.cardsClicked++;
