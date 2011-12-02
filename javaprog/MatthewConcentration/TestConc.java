@@ -36,29 +36,38 @@ public class TestConc
     
     void testGame(Tester t){
         Conc c = new Conc(2,6);
+        //1st
         t.checkExpect(c.move(0,1),0);
-        
+        //2nd works
         t.checkExpect(c.move(1,1),1);
+        //3rd he can still go cause match
         t.checkExpect(c.move(2,1),0);
+        //cant pick already picked card
         t.checkExpect(c.move(0,1),-1);
         t.checkExpect(c.move(1,1),-1);
         
         t.checkExpect(c.getPlayerScore(1),1);
         t.checkExpect(c.getPlayerScore(2),0);
-      // 2nd player cant go yet
-        t.checkExpect(c.move(0,2),-1);
-        t.checkExpect(c.move(3,2),-1);
-       
-        t.checkExpect(c.move(0,1),-1);
-        t.checkExpect(c.move(3,1),0);
-        /** 
-        t.checkExpect(c.move(5,1),-2);
-        
-        t.checkExpect(c.move(0,2),-1);
-       
-        t.checkExpect(c.move(3,1),1);
-        t.checkExpect(c.move(2,1),1);
-         
+      
+        Conc c2 =new Conc(2,6);
+        t.checkExpect(c2.move(0,1),0);
+        t.checkExpect(c2.move(3,1),2);
+        t.checkExpect(c2.move(0,2),0);
+        t.checkExpect(c2.move(4,2),2);
+        t.checkExpect(c2.move(4,2),-1);
+        t.checkExpect(c2.move(4,1),0);
+        t.checkExpect(c2.move(5,1),1);
+        //
+        t.checkExpect(c2.move(0,1),0);
+        t.checkExpect(c2.move(5,1),-1);
+        t.checkExpect(c2.move(2,1),2);
+        //24
+        t.checkExpect(c2.move(1,2),0);
+        t.checkExpect(c2.move(1,2),-1);
+        t.checkExpect(c2.move(0,2),1);
+        t.checkExpect(c2.getPlayerScore(1),1);
+        t.checkExpect(c2.getPlayerScore(2),1);
+          /**
          t.checkExpect(c.move(3,1),-1);
          t.checkExpect(c.move(4,1),0);
          t.checkExpect(c.move(5,1),4);

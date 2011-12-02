@@ -9,8 +9,9 @@ class Conc
 {
    public Player [] players;
    public Card []cards;
-   public int turn, cardsclicked, checkcard1,
-   checkcard2, cardsremain;
+   public int turn, cardsclicked, checkcardvalue1,
+   checkcardvalue2, cardsremain;
+   private int pick1, pick2;
    
    private int NUMCARDS, NUMPLAYERS;
    
@@ -74,8 +75,8 @@ class Conc
         return this.cards[v].getValue();
     }
     public int getCheckCard(int c){
-        if (c==1)return this.checkcard1;
-        else return this.checkcard2;
+        if (c==1)return this.checkcardvalue1;
+        else return this.checkcardvalue2;
     }
          
        /** Linear search helper to set the status back to a regular card
@@ -123,7 +124,7 @@ class Conc
      */
     boolean isGameOver()
     {
-        if(getCardsRemain()>0)
+        if(this.cardsremain>0)
             return false;
         else return true;
     }
@@ -185,48 +186,51 @@ class Conc
   public int move( int card, int player){
       int legal=-1;
       /** Check first if this is  illegal */
-      if(!(isValidMove(card))||!(this.turn==player)){
-          return legal;
-      }
+  if(isValidMove(card)&&(this.turn==player)){
+      
       /** So it is legal proceed */
-      else{
+      
             
           /** -1 to signify picked or out of play 
           *   The first move */
-          if (this.cardsclicked ==0){
+     if (this.cardsclicked ==0){
           cards[card].setStat("status",-1);
           
-          this.checkcard1= cards[card].getValue();
+          this.checkcardvalue1= cards[card].getValue();
+          this.pick1=card;
           legal= 0;
           this.cardsclicked=1;
         }
         /** Second turn so need to check */
         else if( this.cardsclicked == 1){
             
-            this.checkcard2= cards[card].getValue();
+            this.checkcardvalue2= cards[card].getValue();
+            this.pick2 = card;
             cards[card].setStat("status",-1);
            
             /** we have a good match follow up with score change*/
-            if(this.checkcard2==this.checkcard1){
+            if(this.checkcardvalue2==this.checkcardvalue1){
                 
-                this.checkcard2=0;
-                this.checkcard1=0;
+                this.checkcardvalue2=-1;
+                this.checkcardvalue1=-2;
                 /** add to this players score */
-                int score =this.players[player].getScore();
+                int score =this.players[player-1].getScore();
                 this.getPlayer(player).setScore(score+1);
                 legal= 1;
                 this.cardsclicked = 0;
+                this.pick1=-1;
+                this.pick2=-1;
                 
             }
+            /** No match */
             else {
-                /** We have a loser. Need to reset the cards status back to in play 
-                int index=this.getCardIndex(checkcard2);
-                int index1=this.getCardIndex(checkcard1);*/
-                this.cards[checkcard1].setStat("status", 1);
-                this.cards[checkcard2].setStat("status",1);
+               
+                
+                this.cards[pick1].setStat("status", 1);
+                this.cards[pick2].setStat("status",1);
                 /** And reset the check cards just for good mesure */
-                this.checkcard2=0;
-                this.checkcard1=0;
+                this.checkcardvalue2=0;
+                this.checkcardvalue1=0;
                  /** increase the turn counter */
                  if(this.turn>=NUMPLAYERS){
                       this.turn=1;
@@ -236,10 +240,14 @@ class Conc
                       }
                 this.cardsclicked = 0;
                 legal=2;
+                this.pick1=-1;
+                this.pick2=-1;
                 
             }
         }       
     }
+   else{ return legal;
+      }
     return legal;
    }
      
