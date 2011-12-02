@@ -1,0 +1,15 @@
+#Thu Dec 01 19:06:36 PST 2011
+bluej.teamsettings.groupname=
+bluej.teamsettings.subversion.server=cs.sierracollege.edu
+bluej.teamsettings.user=mclemens
+bluej.teamsettings.vcs=subversion
+bluej.teamsettings.ignore8=\\.DS_Store
+bluej.teamsettings.ignore7=.*\\\#backup
+bluej.teamsettings.ignore6=.*\\\#
+bluej.teamsettings.ignore5=.*\\~
+bluej.teamsettings.ignore4=.*\\.ctxt
+bluej.teamsettings.ignore3=team\\.defs
+bluej.teamsettings.subversion.repositoryPrefix=/home/java/workaholics/svnroot
+bluej.teamsettings.ignore2=bluej\\.pkh
+bluej.teamsettings.ignore1=.*\\.class
+bluej.teamsettings.subversion.protocol=svn+ssh
