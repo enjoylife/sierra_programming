@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=p\ c
+comment0.target=Game(int,\ int)
+comment1.params=
+comment1.target=void\ init()
+comment2.params=b
+comment2.target=void\ setCards(boolean)
+comment3.params=
+comment3.target=void\ startCardFlip()
+comment4.params=a
+comment4.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment5.params=
+comment5.target=void\ win()
+comment5.text=says\ who\ wins\ at\ end\ of\ the\ game
+comment6.params=numP\ numC
+comment6.target=void\ resetGame(int,\ int)
+numComments=7
